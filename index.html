@@ -10,19 +10,20 @@
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #f0f0f0, #d9e4f5);
-      color: #333;
+      background: linear-gradient(135deg, #f7f3ef, #e6dfd1);
+      color: #4b3f36;
     }
 
     header {
       text-align: center;
       padding: 3rem 1rem;
-      background-color: #4a90e2;
-      color: white;
+      background-color: #d6c6b8;
+      color: #3b2e25;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
     }
 
     header h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       margin: 0.5rem 0;
     }
 
@@ -30,6 +31,7 @@
       font-size: 1.2rem;
       max-width: 700px;
       margin: 0 auto;
+      line-height: 1.6;
     }
 
     section {
@@ -41,7 +43,7 @@
     h2 {
       text-align: center;
       margin-bottom: 2rem;
-      color: #4a90e2;
+      color: #a58f7c;
     }
 
     /* --- Lomakkeen tyylit --- */
@@ -49,69 +51,93 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      background: #fef9f4;
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+
+    form:hover {
+      transform: translateY(-4px);
     }
 
     input, textarea, select {
-      padding: 0.8rem;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+      padding: 1rem;
+      border-radius: 12px;
+      border: 1px solid #d1c7b7;
       font-size: 1rem;
       width: 100%;
       box-sizing: border-box;
+      background-color: #fff8f0;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #c5a87d;
+      box-shadow: 0 0 0 3px rgba(197, 168, 125, 0.2);
+      outline: none;
     }
 
     textarea {
       resize: vertical;
-      min-height: 120px;
+      min-height: 140px;
     }
 
     label {
-      font-weight: bold;
+      font-weight: 600;
       margin-bottom: 0.3rem;
+      color: #5c4b42;
     }
 
     .checkbox-group {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 0.5rem;
     }
 
+    .checkbox-group label {
+      font-weight: normal;
+      line-height: 1.4;
+    }
+
     button {
-      background-color: #4a90e2;
+      background: linear-gradient(135deg, #c5a87d, #a58f7c);
       color: white;
       border: none;
       padding: 1rem;
       font-size: 1.1rem;
-      border-radius: 8px;
+      border-radius: 12px;
       cursor: pointer;
       transition: 0.3s;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
     }
 
     button:hover {
-      background-color: #357abd;
+      background: linear-gradient(135deg, #a58f7c, #8f7764);
+      transform: translateY(-2px);
     }
 
     .success-message {
       display: none;
       text-align: center;
       padding: 1rem;
-      background-color: #d4edda;
-      color: #155724;
-      border-radius: 8px;
+      background-color: #e3f1e1;
+      color: #2f4f2f;
+      border-radius: 12px;
       margin-top: 1rem;
+      font-weight: 600;
     }
 
     /* --- Footer --- */
     footer {
       text-align: center;
       padding: 2rem;
-      background-color: #f0f0f0;
-      color: #555;
+      background-color: #d6c6b8;
+      color: #3b2e25;
       font-size: 0.9rem;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
     }
   </style>
 </head>
@@ -174,22 +200,15 @@
   </footer>
 
   <script>
-    // --- Lomakkeen käsittely ---
     const form = document.getElementById('songForm');
     const successMessage = document.getElementById('successMessage');
 
     form.addEventListener('submit', function(event) {
       event.preventDefault();
-
-      // Tässä voit käsitellä lomakkeen tiedot esim. lähettämällä backendille
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
       console.log("Lomaketiedot:", data);
-
-      // Näytetään onnistumisviesti
       successMessage.style.display = 'block';
-
-      // Simuloidaan Stripe-maksulinkkiin ohjaus (vaihda linkki omaan)
       setTimeout(() => {
         window.location.href = "https://buy.stripe.com/test_4gwfZ1eO00wH6UQ9AB"; 
       }, 1500);
@@ -198,4 +217,3 @@
 
 </body>
 </html>
-
