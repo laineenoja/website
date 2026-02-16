@@ -1,25 +1,200 @@
 <!DOCTYPE html>
 <html lang="fi">
 <head>
-<meta charset="UTF-8">
-<title>Yhteydenotto</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Osta Oma Kappale</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* --- Yleiset tyylit --- */
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #f0f0f0, #d9e4f5);
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem;
+      background-color: #4a90e2;
+      color: white;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0.5rem 0;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    section {
+      padding: 3rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #4a90e2;
+    }
+
+    /* --- Lomakkeen tyylit --- */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    input, textarea, select {
+      padding: 0.8rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    button {
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      padding: 1rem;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #357abd;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 1rem;
+      background-color: #d4edda;
+      color: #155724;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    /* --- Footer --- */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #f0f0f0;
+      color: #555;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
 
-<h2>Ota yhteyttä</h2>
+  <header>
+    <h1>Osta Oma Kappale</h1>
+    <p>Yllätä läheisesi tai itsesi täysin uniikilla kappaleella, jonka sanat voit valita itse! Anna tekoälyn loihtia juuri sinulle räätälöity musiikkielämys, joka jää mieleen. Täydellinen lahjaidea, juhlaan tai arkeen.</p>
+  </header>
 
-<form action="https://formspree.io/f/XXXXXXXX" method="POST">
-    <label>Nimi</label><br>
-    <input type="text" name="name" required><br><br>
+  <section>
+    <h2>Tilauslomake</h2>
+    <form id="songForm">
+      <div>
+        <label for="name">Nimi</label>
+        <input type="text" id="name" name="name" required>
+      </div>
 
-    <label>Sähköposti</label><br>
-    <input type="email" name="email" required><br><br>
+      <div>
+        <label for="email">Sähköpostiosoite</label>
+        <input type="email" id="email" name="email" required>
+      </div>
 
-    <label>Viesti</label><br>
-    <textarea name="message" required></textarea><br><br>
+      <div>
+        <label for="songName">Kappaleen nimi</label>
+        <input type="text" id="songName" name="songName" required>
+      </div>
 
-    <button type="submit">Lähetä</button>
-</form>
+      <div>
+        <label for="genre">Kappaleen genre</label>
+        <select id="genre" name="genre" required>
+          <option value="">Valitse genre</option>
+          <option value="pop">Pop</option>
+          <option value="rock">Rock</option>
+          <option value="hiphop">Hip-hop</option>
+          <option value="jazz">Jazz</option>
+          <option value="electronic">Elektroninen</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="lyrics">Kappaleen sanoitukset</label>
+        <textarea id="lyrics" name="lyrics" placeholder="Kirjoita tähän omat sanoituksesi..." required></textarea>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="terms" required>
+        <label for="terms">Hyväksyn ehdot: ymmärrän, että kappale tehdään tekoälyn avulla, tiedot tallennetaan ja ostan uniikin, räätälöidyn kappaleen.</label>
+      </div>
+
+      <button type="submit">Jatka maksamaan</button>
+      <div class="success-message" id="successMessage">
+        Lomake vastaanotettu! Siirryt maksamaan...
+      </div>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2026 OmaKappale. Kaikki oikeudet pidätetään.
+  </footer>
+
+  <script>
+    // --- Lomakkeen käsittely ---
+    const form = document.getElementById('songForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Tässä voit käsitellä lomakkeen tiedot esim. lähettämällä backendille
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      console.log("Lomaketiedot:", data);
+
+      // Näytetään onnistumisviesti
+      successMessage.style.display = 'block';
+
+      // Simuloidaan Stripe-maksulinkkiin ohjaus (vaihda linkki omaan)
+      setTimeout(() => {
+        window.location.href = "https://buy.stripe.com/test_4gwfZ1eO00wH6UQ9AB"; 
+      }, 1500);
+    });
+  </script>
 
 </body>
 </html>
