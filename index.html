@@ -6,7 +6,6 @@
   <title>Osta Oma Kappale</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* --- Yleiset tyylit --- */
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
@@ -46,7 +45,6 @@
       color: #a58f7c;
     }
 
-    /* --- Lomakkeen tyylit --- */
     form {
       display: flex;
       flex-direction: column;
@@ -129,7 +127,6 @@
       font-weight: 600;
     }
 
-    /* --- Footer --- */
     footer {
       text-align: center;
       padding: 2rem;
@@ -152,7 +149,7 @@
     <h2>Tilauslomake</h2>
 
     <!-- Kuva lomakkeen yläpuolella -->
-    <img src="https://raw.githubusercontent.com/laineenoja/website/refs/heads/main/AIVAN.png" alt="Oma kuva" 
+    <img src="https://raw.githubusercontent.com/laineenoja/website/refs/heads/main/AIVAN.png" alt="Oma kuva"
          style="width:100%; max-width:400px; display:block; margin:0 auto 2rem auto; border-radius:16px; box-shadow:0 6px 15px rgba(0,0,0,0.1);">
 
     <form id="songForm">
@@ -189,13 +186,13 @@
       </div>
 
       <div class="checkbox-group">
-        <input type="checkbox" id="terms" required>
+        <input type="checkbox" id="terms" name="terms" required>
         <label for="terms">Hyväksyn ehdot: ymmärrän, että kappale tehdään tekoälyn avulla, tiedot tallennetaan ja ostan uniikin, räätälöidyn kappaleen.</label>
       </div>
 
-      <button type="submit">Jatka maksamaan</button>
+      <button type="submit">Lähetä tilaus</button>
       <div class="success-message" id="successMessage">
-        Lomake vastaanotettu! Siirryt maksamaan...
+        Lomake vastaanotettu! Kiitos tilauksestasi.
       </div>
     </form>
   </section>
@@ -208,20 +205,29 @@
     const form = document.getElementById('songForm');
     const successMessage = document.getElementById('successMessage');
 
+    // Web App URL Google Sheets -integraatioon
+    const SHEETS_URL = "https://script.google.com/macros/s/AKfycbxtfZjYQmEEK7gbuoxMYyh2ArZNP6Ek0SlB4WesLnZzKC_pEEJXDNv_VdTfpIdZmo-QPQ/exec";
+
     form.addEventListener('submit', function(event) {
       event.preventDefault();
+
       const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
-      console.log("Lomaketiedot:", data);
-      successMessage.style.display = 'block';
-      setTimeout(() => {
-        window.location.href = "https://buy.stripe.com/test_4gwfZ1eO00wH6UQ9AB"; 
-      }, 1500);
+
+      fetch(SHEETS_URL, {
+        method: "POST",
+        body: new URLSearchParams(formData) // e.parameter osaa lukea tämän Apps Scriptissä
+      })
+      .then(response => response.text())
+      .then(result => {
+        console.log(result); // "Success"
+        successMessage.style.display = 'block';
+        form.reset(); // Tyhjennetään lomake lähetyksen jälkeen
+      })
+      .catch(error => {
+        console.error("Virhe lähetettäessä:", error);
+      });
     });
   </script>
 
 </body>
 </html>
-
-
-
