@@ -16,7 +16,7 @@
   --container-bg: #ffffff;
   --text-primary: #4a4a4a;
   --text-secondary: #7d7d7d;
-  --accent-gold: #c5a065;
+  --accent-gold: #c5a065;    /* Tämä on se "tumma beige" / kulta */
   --border-color: #eae7dc;
   --input-bg: #ffffff;
 }
@@ -67,7 +67,7 @@ body {
   font-size: 32px;
   font-weight: 600;
   letter-spacing: 1px;
-  color: #2c2c2c;
+  color: #2c2c2c; /* Pääotsikko pysyy tummana arvokkuuden vuoksi */
 }
 
 .header-subtitle {
@@ -109,7 +109,8 @@ body {
   font-family: 'Playfair Display', serif;
   font-size: 18px;
   margin-bottom: 10px;
-  color: #2c2c2c;
+  color: var(--accent-gold); /* VAIHDETTU: Tumma beige */
+  font-weight: 600;
 }
 
 .image-card p {
@@ -146,13 +147,13 @@ body {
   color: var(--text-primary);
 }
 
-/* Uusi tyyli vaiheiden otsikoille */
+/* Vaiheiden otsikot */
 .step-title {
   display: block;
   font-family: 'Playfair Display', serif;
   font-weight: 600;
   font-size: 18px;
-  color: #2c2c2c;
+  color: var(--accent-gold); /* VAIHDETTU: Tumma beige */
   margin-bottom: 8px;
 }
 
@@ -309,7 +310,7 @@ button:disabled {
   font-family: 'Playfair Display', serif;
   font-size: 20px;
   margin-bottom: 10px;
-  color: #2c2c2c;
+  color: var(--accent-gold); /* VAIHDETTU: Tumma beige */
 }
 
 .social-text {
@@ -430,19 +431,21 @@ button:disabled {
 
   <div class="image-grid">
     <div class="image-card">
-      <img src="https://raw.githubusercontent.com/laineenoja/website/refs/heads/main/Lapsi.png" alt="Lapsi">
+      <img src="https://raw.githubusercontent.com/laineenoja/website/main/Mummeli.png" alt="Mummeli">
       <h3>Anna lahjaksi</h3>
       <p>Anna jotain ainutlaatuista - henkilökohtainen kappale, joka on tehty juuri hänelle.</p>
     </div>
+
+    <div class="image-card">
+      <img src="https://raw.githubusercontent.com/laineenoja/website/refs/heads/main/Lapsi.png" alt="Lapsi">
+      <h3>Luo muistoja</h3>
+      <p>Musiikki tekee hetkistä ikuisia. Luodaan musiikkia, joka jää elämään!</p>
+    </div>
+
     <div class="image-card">
       <img src="https://raw.githubusercontent.com/laineenoja/website/main/Nainen.png" alt="Nainen">
       <h3>Kerro tarinasi</h3>
       <p>Kerro meille tunteesi, muistosi ja toiveesi - me muutamme ne musiikiksi. Sinun tarinasi ansaitsee tulla kuulluksi.</p>
-    </div>
-    <div class="image-card">
-      <img src="https://raw.githubusercontent.com/laineenoja/website/main/Mummeli.png" alt="Mummeli">
-      <h3>Luo muistoja</h3>
-      <p>Musiikki tekee hetkistä ikuisia. Luodaan musiikkia, joka jää elämään!</p>
     </div>
   </div>
 
