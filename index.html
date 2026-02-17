@@ -22,9 +22,23 @@ body {
   border-radius: 10px;
 }
 
-h1 {
-  text-align: center;
+.header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
   margin-bottom: 25px;
+}
+
+.header img {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 22px;
 }
 
 input, textarea, select {
@@ -67,7 +81,11 @@ button {
 <body>
 
 <div class="container">
-  <h1>Lähetä tilaus</h1>
+
+  <div class="header">
+    <img src="https://raw.githubusercontent.com/laineenoja/website/refs/heads/main/AIVAN_Logo2.png" alt="AIVAN Logo">
+    <h1>AIVAN SOUND</h1>
+  </div>
 
   <form id="orderForm">
 
