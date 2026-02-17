@@ -146,6 +146,16 @@ body {
   color: var(--text-primary);
 }
 
+/* Uusi tyyli vaiheiden otsikoille */
+.step-title {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #2c2c2c;
+  margin-bottom: 8px;
+}
+
 .divider {
   height: 1px;
   background-color: var(--border-color);
@@ -334,7 +344,7 @@ button:disabled {
 
 /* --- MODAL (POPUP) STYLES --- */
 .modal {
-  display: none; /* Piilotettu oletuksena */
+  display: none;
   position: fixed;
   z-index: 1000;
   left: 0;
@@ -342,7 +352,7 @@ button:disabled {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.6); /* Tummennettu tausta */
+  background-color: rgba(0,0,0,0.6);
   backdrop-filter: blur(3px);
 }
 
@@ -396,10 +406,6 @@ button:disabled {
   margin-bottom: 15px;
 }
 
-.modal-body ul {
-  padding-left: 20px;
-}
-
 /* --- MOBILE OPTIMIZATION --- */
 @media (max-width: 600px) {
   .container { padding: 25px 20px; }
@@ -424,43 +430,57 @@ button:disabled {
 
   <div class="image-grid">
     <div class="image-card">
-      <img src="https://raw.githubusercontent.com/laineenoja/website/main/Mummeli.png" alt="Mummeli">
+      <img src="https://raw.githubusercontent.com/laineenoja/website/refs/heads/main/Lapsi.png" alt="Lapsi">
       <h3>Anna lahjaksi</h3>
       <p>Anna jotain ainutlaatuista - henkilökohtainen kappale, joka on tehty juuri hänelle.</p>
     </div>
     <div class="image-card">
-      <img src="https://raw.githubusercontent.com/laineenoja/website/refs/heads/main/Lapsi.png" alt="Lapsi">
-      <h3>Luo muistoja</h3>
-      <p>Musiikki tekee hetkistä ikuisia. Luodaan musiikkia, joka jää elämään!</p>
-    </div>
-        <div class="image-card">
       <img src="https://raw.githubusercontent.com/laineenoja/website/main/Nainen.png" alt="Nainen">
       <h3>Kerro tarinasi</h3>
       <p>Kerro meille tunteesi, muistosi ja toiveesi - me muutamme ne musiikiksi. Sinun tarinasi ansaitsee tulla kuulluksi.</p>
     </div>
+    <div class="image-card">
+      <img src="https://raw.githubusercontent.com/laineenoja/website/main/Mummeli.png" alt="Mummeli">
+      <h3>Luo muistoja</h3>
+      <p>Musiikki tekee hetkistä ikuisia. Luodaan musiikkia, joka jää elämään!</p>
+    </div>
   </div>
 
   <div class="process-section">
+    
     <div class="process-step">
       <div class="step-number">01</div>
       <div class="step-content">
-        Raaka tekoälyn tuottama materiaali annetaan säveltäjillemme, jotka viimeistelevät sen käsin. Lisäämme yksilöllisiä instrumentaalisia kerroksia ja melodisia vivahteita varmistaen, että koneen luoma perusta saa inhimillisen intuition tuoman tunnepitoisuuden ja aidon lämmön.
+        <span class="step-title">Teemme musiikista henkilökohtaista</span>
+        Olemme suomalainen yritys, joka luo yksilöllisiä kappaleita tekoälyn avulla sinua varten. Uskomme, että musiikki on tapa välittää tunteita, muistoja ja tarinoita.<br><br>
+        Tavoitteenamme on tehdä oman kappaleen tilaamisesta helppoa kaikille, ilman aiempaa kokemusta musiikin tekemisestä. Sinä kerrot ideasi ja toiveesi, me luomme ainutlaatuisen musiikkielämyksen.<br>
+        Lopputuloksena saat kappaleen vapaasti omaan käyttöösi.
       </div>
     </div>
     <div class="divider"></div>
+    
     <div class="process-step">
       <div class="step-number">02</div>
       <div class="step-content">
-        Valmiit kappaleet käyvät läpi huolellisen tilallisen masterointiprosessin. Hienosäädämme taajuustasapainon niin, että kappaleet toimivat täydellisesti joko taustamusiikkina tai huomion keskipisteenä – juuri sinun toivomaasi ympäristöön räätälöitynä.
+        <span class="step-title">Asiakas on luomisprosessin keskiössä</span>
+        Toimintamme perustuu laatuun, luotettavuuteen ja helppouteen. Haluamme, että kappaleen tilaaminen on vaivatonta ja että lopputulos vastaa toiveitasi.<br><br>
+        Panostamme selkeään viestintään, huolelliseen toteutukseen ja nopeaan toimitukseen. Jokainen tilaus käsitellään yksilöllisesti, ja palaute on meille tärkeä osa palvelun kehittämistä.<br>
+        Asiakkaidemme tyytyväisyys on tärkein tavoitteemme.
       </div>
     </div>
     <div class="divider"></div>
+    
     <div class="process-step">
       <div class="step-number">03</div>
       <div class="step-content">
-        Omat tekoälymallimme analysoivat tavoitteesi ja niihin liittyvät rytmit ja taajuudet – olipa kyse keskittymisestä, pelaamisesta tai liikunnasta – ja luovat niiden pohjalta äänimaiseman, joka tukee keskittymistä, jaksamista ja mielentilaa mahdollisimman tehokkaasti.
+        <span class="step-title">Näin kappaleesi syntyy</span>
+        Kaikki alkaa sinun ajatuksistasi ja toiveistasi.<br>
+        Tilauksen yhteydessä kerrot meille, millaista musiikkia haluat, millainen tunnelma kappaleessa on ja kenelle se on tarkoitettu. Voit myös kertoa tarinan tai viestin, jonka haluat välittää laulun kautta.<br><br>
+        Näiden tietojen pohjalta luomme kappaleen tekoälyn avulla ja viimeistelemme sen huolellisesti. Varmistamme, että lopputulos on ainutlaatuinen ja sinua varten tehty.<br>
+        Valmis kappale toimitetaan sinulle sähköpostitse sovitussa ajassa, valmiina kuunneltavaksi tai lahjaksi.
       </div>
     </div>
+
   </div>
 
   <div class="form-wrapper">
@@ -536,9 +556,8 @@ button:disabled {
 
 <div id="infoModal" class="modal">
   <div class="modal-content">
-    <span class="close-modal">&times;</span>
-    <div id="modalBody" class="modal-body">
-      </div>
+    <span class="close-modal">×</span>
+    <div id="modalBody" class="modal-body"></div>
   </div>
 </div>
 
@@ -548,63 +567,48 @@ const modal = document.getElementById("infoModal");
 const modalBody = document.getElementById("modalBody");
 const closeBtn = document.getElementsByClassName("close-modal")[0];
 
-// Tekstisisällöt (AMMATTIMAISET EHDOT)
 const content = {
   privacy: `
     <h2>Tietosuojaseloste</h2>
     <p><strong>Rekisterinpitäjä:</strong> AIVAN Sound (jäljempänä "Palveluntarjoaja").</p>
-    
     <h4>1. Henkilötietojen käsittelyn tarkoitus</h4>
     <p>Keräämme henkilötietoja (nimi, sähköpostiosoite, tilaustiedot) asiakassuhteen hoitamista, palvelun tuottamista ja tilauksen toimittamista varten. Tietoja voidaan käyttää myös asiakasviestintään.</p>
-    
     <h4>2. Tietojen tallennus ja suojaus</h4>
     <p>Asiakkaan antamat tiedot käsitellään luottamuksellisesti. Tiedot tallennetaan suojattuihin, kolmannen osapuolen ylläpitämiin pilvipalveluihin (esim. Google Cloud -infrastruktuuri), jotka noudattavat alan tietoturvastandardeja. Pääsy tietoihin on rajattu vain tuotantoprosessiin osallistuville henkilöille.</p>
-    
     <h4>3. Tietojen luovutus</h4>
     <p>Emme myy tai luovuta henkilötietoja ulkopuolisille tahoille markkinointitarkoituksiin ilman asiakkaan nimenomaista suostumusta, paitsi lainsäädännön niin velvoittaessa.</p>
-    
     <h4>4. Omat oikeudet</h4>
     <p>Sinulla on oikeus tarkastaa sinusta tallennetut tiedot ja pyytää niiden poistamista rekisteristä ottamalla yhteyttä asiakaspalveluumme.</p>
   `,
   terms: `
     <h2>Toimitusehdot</h2>
     <p><strong>Voimassaolo:</strong> 1.1.2024 alkaen toistaiseksi.</p>
-    
     <h4>1. Palvelun kuvaus</h4>
     <p>AIVAN Sound tuottaa asiakkaalle räätälöidyn musiikkikappaleen hyödyntäen generatiivista tekoälyä sekä ihmisen tekemää jälkikäsittelyä ja masterointia. Lopputuote on digitaalinen äänitiedosto.</p>
-    
     <h4>2. Tilaus ja toimitus</h4>
     <p>Tilaus on sitova, kun asiakas on lähettänyt tilauslomakkeen. Valmis kappale toimitetaan asiakkaan ilmoittamaan sähköpostiosoitteeseen. Toimitusaika on tyypillisesti 1-3 arkipäivää, mutta voi vaihdella ruuhkatilanteen mukaan.</p>
-    
     <h4>3. Hinta ja maksuehdot</h4>
     <p>Palvelun hinta on 20,00 € (sis. alv). Maksu suoritetaan tilauksen yhteydessä tai laskulla/maksulinkillä, joka toimitetaan asiakkaalle.</p>
-    
     <h4>4. Palautusoikeus</h4>
     <p>Koska palvelu on kuluttajansuojalain mukainen asiakkaan toiveiden mukaan räätälöity tuote (ns. mittatilaustuote), sillä <strong>ei ole normaalia 14 vuorokauden palautusoikeutta</strong> tilauksen vahvistamisen jälkeen.</p>
-    
     <h4>5. Tekijänoikeudet ja käyttöoikeus</h4>
     <p>Asiakas saa pysyvän, ei-yksinomaisen käyttöoikeuden valmiiseen kappaleeseen henkilökohtaiseen käyttöön (sisältäen omat sosiaalisen median kanavat). Asiakas vastaa siitä, että hänen toimittamansa sanoitukset tai ideat eivät loukkaa kolmansien osapuolien tekijänoikeuksia.</p>
   `
 };
 
-// Avaa modaali
 function openModal(type) {
   modal.style.display = "block";
-  // Estä taustan scrollaus kun popup on auki
   document.body.style.overflow = "hidden";
-  
   if (content[type]) {
     modalBody.innerHTML = content[type];
   }
 }
 
-// Sulje modaali (X-nappi)
 closeBtn.onclick = function() {
   modal.style.display = "none";
   document.body.style.overflow = "auto";
 }
 
-// Sulje modaali (Klikkaus taustalle)
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
@@ -671,4 +675,3 @@ form.addEventListener("submit", function(e) {
 
 </body>
 </html>
-
