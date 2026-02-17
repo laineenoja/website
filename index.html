@@ -7,6 +7,8 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <style>
 /* --- MODERN BEIGE THEME --- */
 :root {
@@ -24,7 +26,7 @@
 }
 
 body {
-  font-family: 'Lato', sans-serif; /* Selkeä leipäteksti */
+  font-family: 'Lato', sans-serif;
   background: var(--bg-color);
   color: var(--text-primary);
   display: flex;
@@ -36,11 +38,11 @@ body {
 
 .container {
   width: 100%;
-  max-width: 800px; /* Levennetty hieman, jotta 3 kuvaa mahtuu nätisti */
+  max-width: 800px;
   background: var(--container-bg);
   padding: 40px;
-  border-radius: 2px; /* Terävämmät kulmat ovat modernimmat */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.03); /* Todella pehmeä varjo */
+  border-radius: 2px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
 }
 
 /* --- HEADER --- */
@@ -60,7 +62,7 @@ body {
 }
 
 .header h1 {
-  font-family: 'Playfair Display', serif; /* Otsikkofontti */
+  font-family: 'Playfair Display', serif;
   margin: 0;
   font-size: 32px;
   font-weight: 600;
@@ -76,7 +78,7 @@ body {
   margin-top: 5px;
 }
 
-/* --- IMAGE GRID SECTION (PYYNTÖ 2) --- */
+/* --- IMAGE GRID SECTION --- */
 .image-grid {
   display: flex;
   gap: 25px;
@@ -93,9 +95,9 @@ body {
   width: 100%;
   height: 250px;
   object-fit: cover;
-  border-radius: 4px; /* Hieman pyöristetty */
+  border-radius: 4px;
   margin-bottom: 15px;
-  filter: sepia(20%); /* Pieni seepia-filtteri tuo lämpöä */
+  filter: sepia(20%);
   transition: transform 0.3s ease;
 }
 
@@ -116,7 +118,7 @@ body {
   color: var(--text-secondary);
 }
 
-/* --- PROCESS SECTION (PYYNTÖ 3) --- */
+/* --- PROCESS SECTION --- */
 .process-section {
   margin-bottom: 50px;
   padding: 20px 0;
@@ -147,7 +149,7 @@ body {
 .divider {
   height: 1px;
   background-color: var(--border-color);
-  margin: 25px 0 25px 70px; /* Sisennys numeron jälkeen */
+  margin: 25px 0 25px 70px;
   width: calc(100% - 70px);
 }
 
@@ -181,7 +183,6 @@ input:focus, textarea:focus, select:focus {
   background: white;
 }
 
-/* Checkbox specific */
 .checkbox-group {
   margin-bottom: 25px;
   font-size: 13px;
@@ -201,7 +202,6 @@ input:focus, textarea:focus, select:focus {
   accent-color: var(--accent-gold);
 }
 
-/* Pricing Section */
 .pricing-section {
   background: var(--input-bg);
   border: 1px solid var(--border-color);
@@ -226,7 +226,6 @@ input:focus, textarea:focus, select:focus {
   color: var(--accent-gold);
 }
 
-/* Button */
 button {
   width: 100%;
   padding: 16px;
@@ -243,7 +242,7 @@ button {
 }
 
 button:hover {
-  background: #b08d55; /* Hieman tummempi kulta */
+  background: #b08d55;
 }
 
 button:active {
@@ -262,30 +261,73 @@ button:disabled {
   font-size: 14px;
 }
 
+/* --- SOCIAL MEDIA SECTION --- */
+.social-section {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.social-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #2c2c2c;
+}
+
+.social-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 25px;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap; /* Sallii rivityksen pienillä näytöillä */
+}
+
+.social-link {
+  color: var(--accent-gold);
+  font-size: 26px; /* Hieman isommat ikonit */
+  transition: transform 0.3s, color 0.3s;
+  text-decoration: none;
+  padding: 10px; /* Helpottaa klikkaamista mobiilissa */
+}
+
+.social-link:hover {
+  color: #b08d55;
+  transform: translateY(-3px);
+}
+
 /* --- MOBILE OPTIMIZATION --- */
 @media (max-width: 600px) {
   .container {
     padding: 25px 20px;
   }
-  
   .header h1 {
     font-size: 26px;
   }
-
-  /* Kuvat allekkain mobiilissa */
   .image-grid {
     flex-direction: column;
     gap: 35px;
   }
-
   .image-card img {
-    height: auto; /* Automaattinen korkeus */
+    height: auto;
     max-height: 300px;
   }
-
   .step-number {
     font-size: 28px;
     min-width: 40px;
+  }
+  .social-icons {
+    gap: 15px;
   }
 }
 </style>
@@ -347,7 +389,6 @@ button:disabled {
   </div>
 
   <form id="orderForm">
-
     <label for="name">Nimi</label>
     <input type="text" id="name" name="name" placeholder="Esim. Matti Meikäläinen" required>
 
@@ -384,10 +425,43 @@ button:disabled {
     </div>
 
     <button type="submit">Lähetä tilaus</button>
-
   </form>
 
   <div id="status"></div>
+
+  <div class="social-section">
+    <h3 class="social-title">Tutustu tuotantoomme & inspiroidu</h3>
+    <p class="social-text">
+      Seuraa meitä sosiaalisessa mediassa ja kuuntele uusimmat, asiakkaidemme tarinoista syntyneet teokset. Liity yhteisöön, jossa luovuus ja teknologia kohtaavat.
+    </p>
+    
+    <div class="social-icons">
+      <a href="https://open.spotify.com/artist/21KWUaxHTZDi8Mo4b4VhP1?si=pJy15A-URMGw8l-kySdYoA" target="_blank" class="social-link" title="Spotify">
+        <i class="fab fa-spotify"></i>
+      </a>
+
+      <a href="https://www.youtube.com/@Aivan-ai" target="_blank" class="social-link" title="YouTube">
+        <i class="fab fa-youtube"></i>
+      </a>
+
+      <a href="#" target="_blank" class="social-link" title="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+
+      <a href="#" target="_blank" class="social-link" title="TikTok">
+        <i class="fab fa-tiktok"></i>
+      </a>
+
+      <a href="#" target="_blank" class="social-link" title="Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+
+      <a href="#" target="_blank" class="social-link" title="X (Twitter)">
+        <i class="fab fa-x-twitter"></i>
+      </a>
+    </div>
+  </div>
+
 </div>
 
 <script>
@@ -413,7 +487,7 @@ form.addEventListener("submit", function(e) {
   .then(response => response.text())
   .then(result => {
     statusDiv.innerText = "Kiitos! Tilaus vastaanotettu.";
-    statusDiv.style.color = "#c5a065"; // Gold
+    statusDiv.style.color = "#c5a065"; 
     form.reset();
   })
   .catch(error => {
