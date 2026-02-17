@@ -183,6 +183,13 @@ input:focus, textarea:focus, select:focus {
   background: white;
 }
 
+/* Tyyli piilotetulle custom-kentälle */
+#customGenreContainer {
+  display: none; /* Oletuksena piilossa */
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
 .checkbox-group {
   margin-bottom: 25px;
   font-size: 13px;
@@ -290,15 +297,15 @@ button:disabled {
   display: flex;
   justify-content: center;
   gap: 25px;
-  flex-wrap: wrap; /* Sallii rivityksen pienillä näytöillä */
+  flex-wrap: wrap;
 }
 
 .social-link {
   color: var(--accent-gold);
-  font-size: 26px; /* Hieman isommat ikonit */
+  font-size: 26px;
   transition: transform 0.3s, color 0.3s;
   text-decoration: none;
-  padding: 10px; /* Helpottaa klikkaamista mobiilissa */
+  padding: 10px;
 }
 
 .social-link:hover {
@@ -403,11 +410,23 @@ button:disabled {
       <option value="">Valitse genre</option>
       <option>Pop</option>
       <option>Rock</option>
-      <option>Rap</option>
+      <option>Rap / Hip-Hop</option>
       <option>Iskelmä</option>
+      <option>EDM / Dance</option>
+      <option>Metalli / Heavy</option>
       <option>Ambient / Focus</option>
-      <option>Muu</option>
+      <option>Jazz / Blues</option>
+      <option>Klassinen / Elokuvamusiikki</option>
+      <option>Country / Folk</option>
+      <option>R&B / Soul</option>
+      <option>Lastenlaulut</option>
+      <option value="custom">Määrittele itse (vaikka useampi)</option>
     </select>
+
+    <div id="customGenreContainer">
+      <label for="customGenreInput" style="color: var(--accent-gold); font-size: 11px;">Kirjoita toivomasi tyyli:</label>
+      <input type="text" id="customGenreInput" name="customGenreInput" placeholder="Esim. Kasari-disco, Progressiivinen humppa...">
+    </div>
 
     <label for="lyrics">Sanoitukset / ideat / tunnelma</label>
     <textarea id="lyrics" name="lyrics" rows="5" placeholder="Kerro mistä kappale kertoo tai liitä valmiit sanat..."></textarea>
@@ -466,6 +485,21 @@ button:disabled {
 
 <script>
 const form = document.getElementById("orderForm");
+const genreSelect = document.getElementById("genre");
+const customGenreContainer = document.getElementById("customGenreContainer");
+const customGenreInput = document.getElementById("customGenreInput");
+
+// Kuunnellaan genre-valikon muutoksia
+genreSelect.addEventListener("change", function() {
+  if (this.value === "custom") {
+    customGenreContainer.style.display = "block";
+    customGenreInput.required = true; // Tehdään kentästä pakollinen
+  } else {
+    customGenreContainer.style.display = "none";
+    customGenreInput.required = false;
+    customGenreInput.value = ""; // Tyhjennetään jos piilotetaan
+  }
+});
 
 form.addEventListener("submit", function(e) {
   e.preventDefault();
@@ -473,12 +507,18 @@ form.addEventListener("submit", function(e) {
   const submitBtn = form.querySelector('button[type="submit"]');
   const statusDiv = document.getElementById("status");
 
-  // Estä tuplaklikkaus
   submitBtn.disabled = true;
   submitBtn.innerText = "Käsitellään...";
   statusDiv.innerText = "";
 
   const data = new FormData(form);
+
+  // LOGIIKKA: Jos "custom" on valittu, korvataan genre-tieto käyttäjän kirjoittamalla tekstillä
+  if (data.get("genre") === "custom") {
+    data.set("genre", data.get("customGenreInput"));
+  }
+  // Poistetaan apukenttä datasta, ettei se sotke Sheetin sarakkeita (varmuuden vuoksi)
+  data.delete("customGenreInput");
 
   fetch("https://script.google.com/macros/s/AKfycbzHeFAKJwtLtxn9yus0tm8ZXQoVqtUB4H5IB9wSzifZ_BlYfwT0M4VGq8W08oM8zh3M/exec", {
     method: "POST",
@@ -489,6 +529,8 @@ form.addEventListener("submit", function(e) {
     statusDiv.innerText = "Kiitos! Tilaus vastaanotettu.";
     statusDiv.style.color = "#c5a065"; 
     form.reset();
+    // Piilotetaan myös custom-kenttä resetin jälkeen
+    customGenreContainer.style.display = "none";
   })
   .catch(error => {
     statusDiv.innerText = "Virhe lähetyksessä. Tarkista yhteys.";
