@@ -2,31 +2,41 @@
 <html lang="fi">
 <head>
 <meta charset="UTF-8">
-<title>Tee tilaus</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tee tilaus - AIVAN SOUND</title>
 
 <style>
+/* Nollaus ja box-model asetus */
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Hieman modernimpi fontti */
   background: #111;
   color: white;
   display: flex;
   justify-content: center;
-  padding: 40px;
+  align-items: flex-start; /* Estää keskityksen venymisen pitkillä sivuilla */
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px; /* Pienempi padding mobiilia varten */
 }
 
 .container {
   width: 100%;
   max-width: 500px;
   background: #1c1c1c;
-  padding: 25px;
-  border-radius: 10px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5); /* Hienovarainen varjo */
 }
 
 .header {
   display: flex;
   align-items: center;
   gap: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .header img {
@@ -38,74 +48,131 @@ body {
 
 .header h1 {
   margin: 0;
-  font-size: 22px;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
-/* Uusi tyyli esittelytekstille */
 .intro-text {
-  font-size: 14px;
-  line-height: 1.5;
-  color: #ccc;
-  margin-bottom: 25px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #bbb;
+  margin-bottom: 30px;
   border-bottom: 1px solid #333;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
 }
 
-/* Uusi tyyli labeleille */
 label {
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+  margin-bottom: 6px;
+  font-weight: 600;
   font-size: 14px;
-  color: #ddd;
+  color: #eee;
 }
 
 input, textarea, select {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  box-sizing: border-box; /* Varmistaa että padding ei riko leveyttä */
+  padding: 12px;
+  margin-bottom: 18px;
+  background: #2a2a2a;
+  border: 1px solid #333;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px; /* 16px estää iOS:ää zoomaamasta inputtiin kirjoittaessa */
+  transition: border-color 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #00c853;
 }
 
 .checkbox-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   font-size: 14px;
-  display: flex; /* Varmistaa että checkbox ja teksti ovat linjassa */
+  display: flex;
   align-items: flex-start;
+  color: #ccc;
+  line-height: 1.4;
 }
 
 .checkbox-group input {
-  width: auto;
-  margin-right: 10px;
-  margin-top: 3px;
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  margin-top: 0;
+  flex-shrink: 0; /* Estää checkboxin litistymisen */
+}
+
+/* HINNASTO-OSIO */
+.pricing-section {
+  background: #252525;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pricing-label {
+  font-size: 15px;
+  color: #bbb;
+}
+
+.pricing-amount {
+  font-size: 20px;
+  font-weight: bold;
+  color: #00c853;
 }
 
 button {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   background: #00c853;
+  color: #fff;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: 8px;
+  font-size: 18px;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.1s;
 }
 
-/* Tyyli napille kun se on disabloitu */
+button:hover {
+  background: #00e676;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
 button:disabled {
-  background: #555;
+  background: #444;
   cursor: not-allowed;
-  color: #aaa;
+  color: #888;
 }
 
 #status {
   margin-top: 15px;
   text-align: center;
-  min-height: 20px; /* Estää sivun hyppimisen kun teksti ilmestyy */
+  font-weight: bold;
+  min-height: 24px;
+}
+
+/* Mobiilioptimointi */
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  .container {
+    padding: 20px;
+  }
+  .header h1 {
+    font-size: 20px;
+  }
 }
 </style>
 </head>
@@ -149,9 +216,14 @@ button:disabled {
 
     <div class="checkbox-group">
       <input type="checkbox" id="terms" name="terms" required>
-      <label for="terms" style="font-weight: normal; margin: 0;">
+      <label for="terms">
         Hyväksyn ehdot: ymmärrän, että kappale tehdään tekoälyn avulla, tiedot tallennetaan ja ostan uniikin, räätälöidyn kappaleen.
       </label>
+    </div>
+
+    <div class="pricing-section">
+      <span class="pricing-label">Kappaleen hinta</span>
+      <span class="pricing-amount">20,00 €</span>
     </div>
 
     <button type="submit">Lähetä tilaus</button>
@@ -170,10 +242,10 @@ form.addEventListener("submit", function(e) {
   const submitBtn = form.querySelector('button[type="submit"]');
   const statusDiv = document.getElementById("status");
 
-  // 1. Poistetaan nappi käytöstä ja vaihdetaan teksti
+  // Estä tuplaklikkaus ja anna palautetta
   submitBtn.disabled = true;
   submitBtn.innerText = "Lähetetään...";
-  statusDiv.innerText = ""; // Tyhjennetään vanhat viestit
+  statusDiv.innerText = "";
 
   const data = new FormData(form);
 
@@ -183,17 +255,16 @@ form.addEventListener("submit", function(e) {
   })
   .then(response => response.text())
   .then(result => {
-    statusDiv.innerText = "Tilaus lähetetty!";
-    statusDiv.style.color = "#00c853"; // Vihreä teksti onnistuessa
+    statusDiv.innerText = "Tilaus lähetetty onnistuneesti!";
+    statusDiv.style.color = "#00c853";
     form.reset();
   })
   .catch(error => {
-    statusDiv.innerText = "Virhe lähetyksessä. Yritä uudelleen.";
-    statusDiv.style.color = "#ff5252"; // Punainen teksti virheessä
+    statusDiv.innerText = "Virhe lähetyksessä. Tarkista yhteys.";
+    statusDiv.style.color = "#ff5252";
     console.error(error);
   })
   .finally(() => {
-    // 2. Palautetaan nappi käyttöön riippumatta siitä onnistuiko vai epäonnistuiko
     submitBtn.disabled = false;
     submitBtn.innerText = "Lähetä tilaus";
   });
