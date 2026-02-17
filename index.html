@@ -26,7 +26,7 @@ body {
   display: flex;
   align-items: center;
   gap: 15px;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
 .header img {
@@ -41,6 +41,25 @@ body {
   font-size: 22px;
 }
 
+/* Uusi tyyli esittelytekstille */
+.intro-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #ccc;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 15px;
+}
+
+/* Uusi tyyli labeleille */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #ddd;
+}
+
 input, textarea, select {
   width: 100%;
   padding: 10px;
@@ -48,16 +67,20 @@ input, textarea, select {
   border: none;
   border-radius: 6px;
   font-size: 14px;
+  box-sizing: border-box; /* Varmistaa että padding ei riko leveyttä */
 }
 
 .checkbox-group {
   margin-bottom: 15px;
   font-size: 14px;
+  display: flex; /* Varmistaa että checkbox ja teksti ovat linjassa */
+  align-items: flex-start;
 }
 
 .checkbox-group input {
   width: auto;
-  margin-right: 8px;
+  margin-right: 10px;
+  margin-top: 3px;
 }
 
 button {
@@ -69,11 +92,20 @@ button {
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+  transition: background 0.3s;
+}
+
+/* Tyyli napille kun se on disabloitu */
+button:disabled {
+  background: #555;
+  cursor: not-allowed;
+  color: #aaa;
 }
 
 #status {
   margin-top: 15px;
   text-align: center;
+  min-height: 20px; /* Estää sivun hyppimisen kun teksti ilmestyy */
 }
 </style>
 </head>
@@ -87,13 +119,23 @@ button {
     <h1>AIVAN SOUND</h1>
   </div>
 
+  <p class="intro-text">
+    Tee uniikki kappale itsellesi tai lahjaksi! Anna sanoitusten tulla sinusta tai läheisestäsi ja anna tekoälyn luoda juuri sinun tyylisi mukainen, räätälöity musiikkielämys. Helppo, nopea ja täysin oma.
+  </p>
+
   <form id="orderForm">
 
-    <input type="text" name="name" placeholder="Nimi" required>
-    <input type="email" name="email" placeholder="Sähköposti" required>
-    <input type="text" name="songName" placeholder="Kappaleen nimi" required>
+    <label for="name">Nimi</label>
+    <input type="text" id="name" name="name" placeholder="Esim. Matti Meikäläinen" required>
 
-    <select name="genre" required>
+    <label for="email">Sähköposti</label>
+    <input type="email" id="email" name="email" placeholder="nimi@esimerkki.fi" required>
+
+    <label for="songName">Kappaleen nimi</label>
+    <input type="text" id="songName" name="songName" placeholder="Kappaleen nimi" required>
+
+    <label for="genre">Tyyli / Genre</label>
+    <select id="genre" name="genre" required>
       <option value="">Valitse genre</option>
       <option>Pop</option>
       <option>Rock</option>
@@ -102,11 +144,12 @@ button {
       <option>Muu</option>
     </select>
 
-    <textarea name="lyrics" rows="5" placeholder="Sanoitukset / ideat"></textarea>
+    <label for="lyrics">Sanoitukset / ideat</label>
+    <textarea id="lyrics" name="lyrics" rows="5" placeholder="Kerro mistä kappale kertoo tai liitä valmiit sanat..."></textarea>
 
     <div class="checkbox-group">
       <input type="checkbox" id="terms" name="terms" required>
-      <label for="terms">
+      <label for="terms" style="font-weight: normal; margin: 0;">
         Hyväksyn ehdot: ymmärrän, että kappale tehdään tekoälyn avulla, tiedot tallennetaan ja ostan uniikin, räätälöidyn kappaleen.
       </label>
     </div>
@@ -124,6 +167,14 @@ const form = document.getElementById("orderForm");
 form.addEventListener("submit", function(e) {
   e.preventDefault();
 
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const statusDiv = document.getElementById("status");
+
+  // 1. Poistetaan nappi käytöstä ja vaihdetaan teksti
+  submitBtn.disabled = true;
+  submitBtn.innerText = "Lähetetään...";
+  statusDiv.innerText = ""; // Tyhjennetään vanhat viestit
+
   const data = new FormData(form);
 
   fetch("https://script.google.com/macros/s/AKfycbzHeFAKJwtLtxn9yus0tm8ZXQoVqtUB4H5IB9wSzifZ_BlYfwT0M4VGq8W08oM8zh3M/exec", {
@@ -132,12 +183,19 @@ form.addEventListener("submit", function(e) {
   })
   .then(response => response.text())
   .then(result => {
-    document.getElementById("status").innerText = "Tilaus lähetetty!";
+    statusDiv.innerText = "Tilaus lähetetty!";
+    statusDiv.style.color = "#00c853"; // Vihreä teksti onnistuessa
     form.reset();
   })
   .catch(error => {
-    document.getElementById("status").innerText = "Virhe lähetyksessä.";
+    statusDiv.innerText = "Virhe lähetyksessä. Yritä uudelleen.";
+    statusDiv.style.color = "#ff5252"; // Punainen teksti virheessä
     console.error(error);
+  })
+  .finally(() => {
+    // 2. Palautetaan nappi käyttöön riippumatta siitä onnistuiko vai epäonnistuiko
+    submitBtn.disabled = false;
+    submitBtn.innerText = "Lähetä tilaus";
   });
 });
 </script>
