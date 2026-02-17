@@ -36,15 +36,14 @@ input, textarea, select {
   font-size: 14px;
 }
 
-.checkbox-row {
-  display: flex;
-  align-items: center;
+.checkbox-group {
   margin-bottom: 15px;
+  font-size: 14px;
 }
 
-.checkbox-row input {
+.checkbox-group input {
   width: auto;
-  margin-right: 10px;
+  margin-right: 8px;
 }
 
 button {
@@ -56,11 +55,6 @@ button {
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-}
-
-button:disabled {
-  background: #555;
-  cursor: not-allowed;
 }
 
 #status {
@@ -92,14 +86,14 @@ button:disabled {
 
     <textarea name="lyrics" rows="5" placeholder="Sanoitukset / ideat"></textarea>
 
-    <div class="checkbox-row">
-      <input type="checkbox" id="termsCheckbox">
-      <label for="termsCheckbox">
-        Hyväksyn <a href="#" style="color:#00e676;">ehdot</a>
+    <div class="checkbox-group">
+      <input type="checkbox" id="terms" name="terms" required>
+      <label for="terms">
+        Hyväksyn ehdot: ymmärrän, että kappale tehdään tekoälyn avulla, tiedot tallennetaan ja ostan uniikin, räätälöidyn kappaleen.
       </label>
     </div>
 
-    <button type="submit" id="submitBtn" disabled>Lähetä tilaus</button>
+    <button type="submit">Lähetä tilaus</button>
 
   </form>
 
@@ -108,12 +102,6 @@ button:disabled {
 
 <script>
 const form = document.getElementById("orderForm");
-const checkbox = document.getElementById("termsCheckbox");
-const submitBtn = document.getElementById("submitBtn");
-
-checkbox.addEventListener("change", function() {
-  submitBtn.disabled = !this.checked;
-});
 
 form.addEventListener("submit", function(e) {
   e.preventDefault();
@@ -128,7 +116,6 @@ form.addEventListener("submit", function(e) {
   .then(result => {
     document.getElementById("status").innerText = "Tilaus lähetetty!";
     form.reset();
-    submitBtn.disabled = true;
   })
   .catch(error => {
     document.getElementById("status").innerText = "Virhe lähetyksessä.";
