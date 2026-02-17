@@ -18,7 +18,7 @@
   --text-secondary: #7d7d7d; /* Vaaleampi harmaa */
   --accent-gold: #c5a065;    /* Hienostunut kulta/beige korostus */
   --border-color: #eae7dc;   /* Vaalea reunus */
-  --input-bg: #faf9f6;       /* Input-kenttien tausta */
+  --input-bg: #faf9f6;       /* Input-kenttien oletustausta */
 }
 
 * {
@@ -153,6 +153,16 @@ body {
   width: calc(100% - 70px);
 }
 
+/* --- FORM WRAPPER (UUSI LAATIKKO) --- */
+.form-wrapper {
+  background-color: #fdfdfa; /* Hieman eri sävy kuin päätausta */
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 35px;
+  margin-bottom: 40px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.02); /* Hyvin hienovarainen varjo */
+}
+
 /* --- FORM STYLES --- */
 label {
   display: block;
@@ -164,11 +174,12 @@ label {
   color: var(--text-secondary);
 }
 
+/* Inputit valkoiseksi jotta erottuvat boksista */
 input, textarea, select {
   width: 100%;
   padding: 15px;
   margin-bottom: 20px;
-  background: var(--input-bg);
+  background: #ffffff; 
   border: 1px solid var(--border-color);
   color: var(--text-primary);
   border-radius: 4px;
@@ -180,12 +191,11 @@ input, textarea, select {
 input:focus, textarea:focus, select:focus {
   outline: none;
   border-color: var(--accent-gold);
-  background: white;
 }
 
 /* Tyyli piilotetulle custom-kentälle */
 #customGenreContainer {
-  display: none; /* Oletuksena piilossa */
+  display: none; 
   margin-top: -10px;
   margin-bottom: 20px;
 }
@@ -210,7 +220,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 .pricing-section {
-  background: var(--input-bg);
+  background: #ffffff;
   border: 1px solid var(--border-color);
   border-radius: 4px;
   padding: 20px;
@@ -318,6 +328,9 @@ button:disabled {
   .container {
     padding: 25px 20px;
   }
+  .form-wrapper {
+    padding: 20px; /* Pienempi padding mobiilissa */
+  }
   .header h1 {
     font-size: 26px;
   }
@@ -395,59 +408,60 @@ button:disabled {
     </div>
   </div>
 
-  <form id="orderForm">
-    <label for="name">Nimi</label>
-    <input type="text" id="name" name="name" placeholder="Esim. Matti Meikäläinen" required>
+  <div class="form-wrapper">
+    <form id="orderForm">
+      <label for="name">Nimi</label>
+      <input type="text" id="name" name="name" placeholder="Esim. Matti Meikäläinen" required>
 
-    <label for="email">Sähköposti</label>
-    <input type="email" id="email" name="email" placeholder="nimi@esimerkki.fi" required>
+      <label for="email">Sähköposti</label>
+      <input type="email" id="email" name="email" placeholder="nimi@esimerkki.fi" required>
 
-    <label for="songName">Kappaleen nimi</label>
-    <input type="text" id="songName" name="songName" placeholder="Kappaleen nimi" required>
+      <label for="songName">Kappaleen nimi</label>
+      <input type="text" id="songName" name="songName" placeholder="Kappaleen nimi" required>
 
-    <label for="genre">Tyyli / Genre</label>
-    <select id="genre" name="genre" required>
-      <option value="">Valitse genre</option>
-      <option>Pop</option>
-      <option>Rock</option>
-      <option>Rap</option>
-      <option>Iskelmä</option>
-      <option>EDM</option>
-      <option>Metalli</option>
-      <option>Ambient</option>
-      <option>Blues</option>
-      <option>Klassinen</option>
-      <option>Country</option>
-      <option>Dubstep</option>
-      <option>Lastenlaulut</option>
-      <option value="custom">Määrittele itse (vaikka useampi)</option>
-    </select>
+      <label for="genre">Tyyli / Genre</label>
+      <select id="genre" name="genre" required>
+        <option value="">Valitse genre</option>
+        <option>Pop</option>
+        <option>Rock</option>
+        <option>Rap</option>
+        <option>Iskelmä</option>
+        <option>EDM</option>
+        <option>Metalli</option>
+        <option>Ambient</option>
+        <option>Blues</option>
+        <option>Klassinen</option>
+        <option>Country</option>
+        <option>Dubstep</option>
+        <option>Lastenlaulut</option>
+        <option value="custom">Määrittele itse (vaikka useampi)</option>
+      </select>
 
-    <div id="customGenreContainer">
-      <label for="customGenreInput" style="color: var(--accent-gold); font-size: 11px;">Kirjoita toivomasi tyyli:</label>
-      <input type="text" id="customGenreInput" name="customGenreInput" placeholder="Esim. Kasari-disco, Progressiivinen humppa...">
-    </div>
+      <div id="customGenreContainer">
+        <label for="customGenreInput" style="color: var(--accent-gold); font-size: 11px;">Kirjoita toivomasi tyyli:</label>
+        <input type="text" id="customGenreInput" name="customGenreInput" placeholder="Esim. Kasari-disco, Progressiivinen humppa...">
+      </div>
 
-    <label for="lyrics">Sanoitukset / ideat / tunnelma</label>
-    <textarea id="lyrics" name="lyrics" rows="5" placeholder="Kerro mistä kappale kertoo tai liitä valmiit sanat..."></textarea>
+      <label for="lyrics">Sanoitukset / ideat / tunnelma</label>
+      <textarea id="lyrics" name="lyrics" rows="5" placeholder="Kerro mistä kappale kertoo tai liitä valmiit sanat..."></textarea>
 
-    <div class="checkbox-group">
-      <input type="checkbox" id="terms" name="terms" required>
-      <label for="terms" style="margin: 0; font-weight: normal; text-transform: none;">
-        Hyväksyn ehdot: ymmärrän, että kappale tehdään tekoälyn ja ihmisen yhteistyönä, tiedot tallennetaan ja ostan uniikin, räätälöidyn kappaleen.
-      </label>
-    </div>
+      <div class="checkbox-group">
+        <input type="checkbox" id="terms" name="terms" required>
+        <label for="terms" style="margin: 0; font-weight: normal; text-transform: none;">
+          Hyväksyn ehdot: ymmärrän, että kappale tehdään tekoälyn ja ihmisen yhteistyönä, tiedot tallennetaan ja ostan uniikin, räätälöidyn kappaleen.
+        </label>
+      </div>
 
-    <div class="pricing-section">
-      <span class="pricing-label">Kappaleen hinta (sis. alv)</span>
-      <span class="pricing-amount">20,00 €</span>
-    </div>
+      <div class="pricing-section">
+        <span class="pricing-label">Kappaleen hinta (sis. alv)</span>
+        <span class="pricing-amount">20,00 €</span>
+      </div>
 
-    <button type="submit">Lähetä tilaus</button>
-  </form>
+      <button type="submit">Lähetä tilaus</button>
+    </form>
 
-  <div id="status"></div>
-
+    <div id="status"></div>
+  </div>
   <div class="social-section">
     <h3 class="social-title">Tutustu tuotantoomme & inspiroidu</h3>
     <p class="social-text">
@@ -493,11 +507,11 @@ const customGenreInput = document.getElementById("customGenreInput");
 genreSelect.addEventListener("change", function() {
   if (this.value === "custom") {
     customGenreContainer.style.display = "block";
-    customGenreInput.required = true; // Tehdään kentästä pakollinen
+    customGenreInput.required = true; 
   } else {
     customGenreContainer.style.display = "none";
     customGenreInput.required = false;
-    customGenreInput.value = ""; // Tyhjennetään jos piilotetaan
+    customGenreInput.value = ""; 
   }
 });
 
@@ -517,7 +531,6 @@ form.addEventListener("submit", function(e) {
   if (data.get("genre") === "custom") {
     data.set("genre", data.get("customGenreInput"));
   }
-  // Poistetaan apukenttä datasta, ettei se sotke Sheetin sarakkeita (varmuuden vuoksi)
   data.delete("customGenreInput");
 
   fetch("https://script.google.com/macros/s/AKfycbzHeFAKJwtLtxn9yus0tm8ZXQoVqtUB4H5IB9wSzifZ_BlYfwT0M4VGq8W08oM8zh3M/exec", {
@@ -529,7 +542,6 @@ form.addEventListener("submit", function(e) {
     statusDiv.innerText = "Kiitos! Tilaus vastaanotettu.";
     statusDiv.style.color = "#c5a065"; 
     form.reset();
-    // Piilotetaan myös custom-kenttä resetin jälkeen
     customGenreContainer.style.display = "none";
   })
   .catch(error => {
@@ -546,4 +558,3 @@ form.addEventListener("submit", function(e) {
 
 </body>
 </html>
-
