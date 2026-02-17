@@ -2,223 +2,106 @@
 <html lang="fi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Osta Oma Kappale</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
+  <title>Tee tilaus</title>
   <style>
     body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #f7f3ef, #e6dfd1);
-      color: #4b3f36;
-    }
-
-    header {
-      text-align: center;
-      padding: 3rem 1rem;
-      background-color: #d6c6b8;
-      color: #3b2e25;
-      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-    }
-
-    header h1 {
-      font-size: 2.8rem;
-      margin: 0.5rem 0;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    section {
-      padding: 3rem 1rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #a58f7c;
-    }
-
-    .hero-image {
-      width: 100%;
-      max-width: 420px;
-      display: block;
-      margin: 0 auto 2rem auto;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-    }
-
-    form {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
       display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      background: #fef9f4;
-      padding: 2.5rem;
-      border-radius: 16px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      background: #1c1c1c;
+      padding: 25px;
+      border-radius: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
     }
 
     input, textarea, select {
-      padding: 1rem;
-      border-radius: 12px;
-      border: 1px solid #d1c7b7;
-      font-size: 1rem;
       width: 100%;
-      box-sizing: border-box;
-      background-color: #fff8f0;
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 140px;
-    }
-
-    label {
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-    }
-
-    .checkbox-group {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
     }
 
     button {
-      background: linear-gradient(135deg, #c5a87d, #a58f7c);
-      color: white;
+      width: 100%;
+      padding: 12px;
+      background: #00c853;
       border: none;
-      padding: 1rem;
-      font-size: 1.1rem;
-      border-radius: 12px;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
-      transition: 0.3s;
     }
 
     button:hover {
-      background: linear-gradient(135deg, #a58f7c, #8f7764);
-      transform: translateY(-2px);
+      background: #00e676;
     }
 
-    .success-message {
-      display: none;
+    #status {
+      margin-top: 15px;
       text-align: center;
-      padding: 1rem;
-      background-color: #e3f1e1;
-      color: #2f4f2f;
-      border-radius: 12px;
-      margin-top: 1rem;
-      font-weight: 600;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background-color: #d6c6b8;
-      color: #3b2e25;
-      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Osta Oma Kappale</h1>
-  <p>
-    Yllätä läheisesi tai itsesi täysin uniikilla kappaleella, jonka sanat voit valita itse.
-    Tekoäly luo sinulle räätälöidyn musiikkielämyksen.
-  </p>
-</header>
+<div class="container">
+  <h1>Lähetä tilaus</h1>
 
-<section>
-  <h2>Tilauslomake</h2>
+  <form id="orderForm">
+    <input type="text" name="name" placeholder="Nimi" required>
+    <input type="email" name="email" placeholder="Sähköposti" required>
+    <input type="text" name="songName" placeholder="Kappaleen nimi" required>
 
-  <img class="hero-image"
-       src="https://raw.githubusercontent.com/laineenoja/website/refs/heads/main/AIVAN.png"
-       alt="AIVAN">
+    <select name="genre" required>
+      <option value="">Valitse genre</option>
+      <option>Pop</option>
+      <option>Rock</option>
+      <option>Rap</option>
+      <option>Iskelmä</option>
+      <option>Muu</option>
+    </select>
 
-  <form id="songForm">
-
-    <div>
-      <label>Nimi</label>
-      <input type="text" name="name" required>
-    </div>
-
-    <div>
-      <label>Sähköpostiosoite</label>
-      <input type="email" name="email" required>
-    </div>
-
-    <div>
-      <label>Kappaleen nimi</label>
-      <input type="text" name="songName" required>
-    </div>
-
-    <div>
-      <label>Kappaleen genre</label>
-      <select name="genre" required>
-        <option value="">Valitse genre</option>
-        <option value="Pop">Pop</option>
-        <option value="Rock">Rock</option>
-        <option value="Hip-hop">Hip-hop</option>
-        <option value="Jazz">Jazz</option>
-        <option value="Elektroninen">Elektroninen</option>
-      </select>
-    </div>
-
-    <div>
-      <label>Sanoitukset</label>
-      <textarea name="lyrics" placeholder="Kirjoita tähän omat sanoituksesi..." required></textarea>
-    </div>
-
-    <div class="checkbox-group">
-      <input type="checkbox" name="terms" required>
-      <label>Hyväksyn ehdot ja tietojen tallennuksen</label>
-    </div>
+    <textarea name="lyrics" rows="5" placeholder="Sanoitukset / ideat"></textarea>
 
     <button type="submit">Lähetä tilaus</button>
-
-    <div class="success-message" id="successMessage">
-      Tilaus lähetetty! Kiitos.
-    </div>
-
   </form>
-</section>
 
-<footer>
-  &copy; 2026 OmaKappale
-</footer>
+  <div id="status"></div>
+</div>
 
 <script>
-const form = document.getElementById('songForm');
-const successMessage = document.getElementById('successMessage');
-
-const SHEETS_URL = "https://script.google.com/macros/s/AKfycbw3Hp16ugD1pQizPzR4F72qbocMBkc9ntr-PAW9qoB0278oK8j074S5aa1BL8cDiA/exec";
-
-form.addEventListener('submit', function(e) {
+document.getElementById("orderForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  const formData = new FormData(form);
+  const form = e.target;
+  const data = new FormData(form);
 
-  fetch(SHEETS_URL, {
+  fetch("https://script.google.com/macros/s/AKfycbzHeFAKJwtLtxn9yus0tm8ZXQoVqtUB4H5IB9wSzifZ_BlYfwT0M4VGq8W08oM8zh3M/exec", {
     method: "POST",
-    body: new URLSearchParams(formData)
+    body: data
   })
-  .then(res => res.text())
-  .then(data => {
-    successMessage.style.display = "block";
+  .then(response => response.text())
+  .then(result => {
+    document.getElementById("status").innerText = "Tilaus lähetetty!";
     form.reset();
   })
-  .catch(err => {
-    alert("Virhe lähetyksessä");
-    console.error(err);
+  .catch(error => {
+    document.getElementById("status").innerText = "Virhe lähetyksessä.";
+    console.error(error);
   });
 });
 </script>
