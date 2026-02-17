@@ -12,13 +12,13 @@
 <style>
 /* --- MODERN BEIGE THEME --- */
 :root {
-  --bg-color: #fdfcf8;      /* Hyvin vaalea kermanvalkoinen */
-  --container-bg: #ffffff;   /* Puhdas valkoinen */
-  --text-primary: #4a4a4a;   /* Tummanharmaa teksti */
-  --text-secondary: #7d7d7d; /* Vaaleampi harmaa */
-  --accent-gold: #c5a065;    /* Hienostunut kulta/beige korostus */
-  --border-color: #eae7dc;   /* Vaalea reunus */
-  --input-bg: #faf9f6;       /* Input-kenttien oletustausta */
+  --bg-color: #fdfcf8;
+  --container-bg: #ffffff;
+  --text-primary: #4a4a4a;
+  --text-secondary: #7d7d7d;
+  --accent-gold: #c5a065;
+  --border-color: #eae7dc;
+  --input-bg: #ffffff;
 }
 
 * {
@@ -78,7 +78,7 @@ body {
   margin-top: 5px;
 }
 
-/* --- IMAGE GRID SECTION --- */
+/* --- IMAGE GRID --- */
 .image-grid {
   display: flex;
   gap: 25px;
@@ -118,7 +118,7 @@ body {
   color: var(--text-secondary);
 }
 
-/* --- PROCESS SECTION --- */
+/* --- PROCESS --- */
 .process-section {
   margin-bottom: 50px;
   padding: 20px 0;
@@ -153,17 +153,16 @@ body {
   width: calc(100% - 70px);
 }
 
-/* --- FORM WRAPPER (UUSI LAATIKKO) --- */
+/* --- FORM WRAPPER --- */
 .form-wrapper {
-  background-color: #fdfdfa; /* Hieman eri sävy kuin päätausta */
+  background-color: #fdfdfa;
   border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 35px;
   margin-bottom: 40px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.02); /* Hyvin hienovarainen varjo */
+  box-shadow: 0 5px 20px rgba(0,0,0,0.02);
 }
 
-/* --- FORM STYLES --- */
 label {
   display: block;
   margin-bottom: 8px;
@@ -174,12 +173,11 @@ label {
   color: var(--text-secondary);
 }
 
-/* Inputit valkoiseksi jotta erottuvat boksista */
 input, textarea, select {
   width: 100%;
   padding: 15px;
   margin-bottom: 20px;
-  background: #ffffff; 
+  background: var(--input-bg);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
   border-radius: 4px;
@@ -193,7 +191,6 @@ input:focus, textarea:focus, select:focus {
   border-color: var(--accent-gold);
 }
 
-/* Tyyli piilotetulle custom-kentälle */
 #customGenreContainer {
   display: none; 
   margin-top: -10px;
@@ -217,6 +214,18 @@ input:focus, textarea:focus, select:focus {
   margin-bottom: 0;
   flex-shrink: 0;
   accent-color: var(--accent-gold);
+}
+
+/* Linkit ehdoissa */
+.terms-link {
+  color: var(--text-primary);
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.terms-link:hover {
+  color: var(--accent-gold);
 }
 
 .pricing-section {
@@ -278,7 +287,7 @@ button:disabled {
   font-size: 14px;
 }
 
-/* --- SOCIAL MEDIA SECTION --- */
+/* --- SOCIAL MEDIA --- */
 .social-section {
   margin-top: 60px;
   padding-top: 40px;
@@ -323,32 +332,82 @@ button:disabled {
   transform: translateY(-3px);
 }
 
+/* --- MODAL (POPUP) STYLES --- */
+.modal {
+  display: none; /* Piilotettu oletuksena */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6); /* Tummennettu tausta */
+  backdrop-filter: blur(3px);
+}
+
+.modal-content {
+  background-color: var(--bg-color);
+  margin: 5% auto;
+  padding: 40px;
+  border: 1px solid var(--accent-gold);
+  width: 90%;
+  max-width: 600px;
+  border-radius: 4px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.close-modal {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-modal:hover {
+  color: var(--accent-gold);
+}
+
+.modal-body h2 {
+  font-family: 'Playfair Display', serif;
+  color: #2c2c2c;
+  margin-top: 0;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.modal-body h4 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: var(--accent-gold);
+  font-size: 16px;
+}
+
+.modal-body p, .modal-body ul {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin-bottom: 15px;
+}
+
+.modal-body ul {
+  padding-left: 20px;
+}
+
 /* --- MOBILE OPTIMIZATION --- */
 @media (max-width: 600px) {
-  .container {
-    padding: 25px 20px;
-  }
-  .form-wrapper {
-    padding: 20px; /* Pienempi padding mobiilissa */
-  }
-  .header h1 {
-    font-size: 26px;
-  }
-  .image-grid {
-    flex-direction: column;
-    gap: 35px;
-  }
-  .image-card img {
-    height: auto;
-    max-height: 300px;
-  }
-  .step-number {
-    font-size: 28px;
-    min-width: 40px;
-  }
-  .social-icons {
-    gap: 15px;
-  }
+  .container { padding: 25px 20px; }
+  .form-wrapper { padding: 20px; }
+  .header h1 { font-size: 26px; }
+  .image-grid { flex-direction: column; gap: 35px; }
+  .image-card img { height: auto; max-height: 300px; }
+  .modal-content { margin: 10% auto; padding: 20px; width: 95%; }
 }
 </style>
 </head>
@@ -369,13 +428,11 @@ button:disabled {
       <h3>Anna lahjaksi</h3>
       <p>Anna jotain ainutlaatuista - henkilökohtainen kappale, joka on tehty juuri hänelle.</p>
     </div>
-
     <div class="image-card">
       <img src="https://raw.githubusercontent.com/laineenoja/website/main/Nainen.png" alt="Nainen">
       <h3>Kerro tarinasi</h3>
       <p>Kerro meille tunteesi, muistosi ja toiveesi - me muutamme ne musiikiksi. Sinun tarinasi ansaitsee tulla kuulluksi.</p>
     </div>
-
     <div class="image-card">
       <img src="https://raw.githubusercontent.com/laineenoja/website/main/Mummeli.png" alt="Mummeli">
       <h3>Luo muistoja</h3>
@@ -391,7 +448,6 @@ button:disabled {
       </div>
     </div>
     <div class="divider"></div>
-
     <div class="process-step">
       <div class="step-number">02</div>
       <div class="step-content">
@@ -399,7 +455,6 @@ button:disabled {
       </div>
     </div>
     <div class="divider"></div>
-
     <div class="process-step">
       <div class="step-number">03</div>
       <div class="step-content">
@@ -448,7 +503,7 @@ button:disabled {
       <div class="checkbox-group">
         <input type="checkbox" id="terms" name="terms" required>
         <label for="terms" style="margin: 0; font-weight: normal; text-transform: none;">
-          Hyväksyn ehdot: ymmärrän, että kappale tehdään tekoälyn ja ihmisen yhteistyönä, tiedot tallennetaan ja ostan uniikin, räätälöidyn kappaleen.
+          Hyväksyn <span class="terms-link" onclick="openModal('privacy')">tietosuojaselosteen</span> ja <span class="terms-link" onclick="openModal('terms')">toimitusehdot</span>.
         </label>
       </div>
 
@@ -459,51 +514,110 @@ button:disabled {
 
       <button type="submit">Lähetä tilaus</button>
     </form>
-
     <div id="status"></div>
   </div>
+
   <div class="social-section">
     <h3 class="social-title">Tutustu tuotantoomme & inspiroidu</h3>
     <p class="social-text">
       Seuraa meitä sosiaalisessa mediassa ja kuuntele uusimmat, asiakkaidemme tarinoista syntyneet teokset. Liity yhteisöön, jossa luovuus ja teknologia kohtaavat.
     </p>
-    
     <div class="social-icons">
-      <a href="https://open.spotify.com/artist/21KWUaxHTZDi8Mo4b4VhP1?si=pJy15A-URMGw8l-kySdYoA" target="_blank" class="social-link" title="Spotify">
-        <i class="fab fa-spotify"></i>
-      </a>
-
-      <a href="https://www.youtube.com/@Aivan-ai" target="_blank" class="social-link" title="YouTube">
-        <i class="fab fa-youtube"></i>
-      </a>
-
-      <a href="#" target="_blank" class="social-link" title="Instagram">
-        <i class="fab fa-instagram"></i>
-      </a>
-
-      <a href="#" target="_blank" class="social-link" title="TikTok">
-        <i class="fab fa-tiktok"></i>
-      </a>
-
-      <a href="#" target="_blank" class="social-link" title="Facebook">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-
-      <a href="#" target="_blank" class="social-link" title="X (Twitter)">
-        <i class="fab fa-x-twitter"></i>
-      </a>
+      <a href="https://open.spotify.com/artist/21KWUaxHTZDi8Mo4b4VhP1?si=pJy15A-URMGw8l-kySdYoA" target="_blank" class="social-link" title="Spotify"><i class="fab fa-spotify"></i></a>
+      <a href="https://www.youtube.com/@Aivan-ai" target="_blank" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="#" target="_blank" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" target="_blank" class="social-link" title="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="#" target="_blank" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" target="_blank" class="social-link" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
     </div>
   </div>
 
 </div>
 
+<div id="infoModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <div id="modalBody" class="modal-body">
+      </div>
+  </div>
+</div>
+
 <script>
+// --- MODAL LOGIC ---
+const modal = document.getElementById("infoModal");
+const modalBody = document.getElementById("modalBody");
+const closeBtn = document.getElementsByClassName("close-modal")[0];
+
+// Tekstisisällöt (AMMATTIMAISET EHDOT)
+const content = {
+  privacy: `
+    <h2>Tietosuojaseloste</h2>
+    <p><strong>Rekisterinpitäjä:</strong> AIVAN Sound (jäljempänä "Palveluntarjoaja").</p>
+    
+    <h4>1. Henkilötietojen käsittelyn tarkoitus</h4>
+    <p>Keräämme henkilötietoja (nimi, sähköpostiosoite, tilaustiedot) asiakassuhteen hoitamista, palvelun tuottamista ja tilauksen toimittamista varten. Tietoja voidaan käyttää myös asiakasviestintään.</p>
+    
+    <h4>2. Tietojen tallennus ja suojaus</h4>
+    <p>Asiakkaan antamat tiedot käsitellään luottamuksellisesti. Tiedot tallennetaan suojattuihin, kolmannen osapuolen ylläpitämiin pilvipalveluihin (esim. Google Cloud -infrastruktuuri), jotka noudattavat alan tietoturvastandardeja. Pääsy tietoihin on rajattu vain tuotantoprosessiin osallistuville henkilöille.</p>
+    
+    <h4>3. Tietojen luovutus</h4>
+    <p>Emme myy tai luovuta henkilötietoja ulkopuolisille tahoille markkinointitarkoituksiin ilman asiakkaan nimenomaista suostumusta, paitsi lainsäädännön niin velvoittaessa.</p>
+    
+    <h4>4. Omat oikeudet</h4>
+    <p>Sinulla on oikeus tarkastaa sinusta tallennetut tiedot ja pyytää niiden poistamista rekisteristä ottamalla yhteyttä asiakaspalveluumme.</p>
+  `,
+  terms: `
+    <h2>Toimitusehdot</h2>
+    <p><strong>Voimassaolo:</strong> 1.1.2024 alkaen toistaiseksi.</p>
+    
+    <h4>1. Palvelun kuvaus</h4>
+    <p>AIVAN Sound tuottaa asiakkaalle räätälöidyn musiikkikappaleen hyödyntäen generatiivista tekoälyä sekä ihmisen tekemää jälkikäsittelyä ja masterointia. Lopputuote on digitaalinen äänitiedosto.</p>
+    
+    <h4>2. Tilaus ja toimitus</h4>
+    <p>Tilaus on sitova, kun asiakas on lähettänyt tilauslomakkeen. Valmis kappale toimitetaan asiakkaan ilmoittamaan sähköpostiosoitteeseen. Toimitusaika on tyypillisesti 1-3 arkipäivää, mutta voi vaihdella ruuhkatilanteen mukaan.</p>
+    
+    <h4>3. Hinta ja maksuehdot</h4>
+    <p>Palvelun hinta on 20,00 € (sis. alv). Maksu suoritetaan tilauksen yhteydessä tai laskulla/maksulinkillä, joka toimitetaan asiakkaalle.</p>
+    
+    <h4>4. Palautusoikeus</h4>
+    <p>Koska palvelu on kuluttajansuojalain mukainen asiakkaan toiveiden mukaan räätälöity tuote (ns. mittatilaustuote), sillä <strong>ei ole normaalia 14 vuorokauden palautusoikeutta</strong> tilauksen vahvistamisen jälkeen.</p>
+    
+    <h4>5. Tekijänoikeudet ja käyttöoikeus</h4>
+    <p>Asiakas saa pysyvän, ei-yksinomaisen käyttöoikeuden valmiiseen kappaleeseen henkilökohtaiseen käyttöön (sisältäen omat sosiaalisen median kanavat). Asiakas vastaa siitä, että hänen toimittamansa sanoitukset tai ideat eivät loukkaa kolmansien osapuolien tekijänoikeuksia.</p>
+  `
+};
+
+// Avaa modaali
+function openModal(type) {
+  modal.style.display = "block";
+  // Estä taustan scrollaus kun popup on auki
+  document.body.style.overflow = "hidden";
+  
+  if (content[type]) {
+    modalBody.innerHTML = content[type];
+  }
+}
+
+// Sulje modaali (X-nappi)
+closeBtn.onclick = function() {
+  modal.style.display = "none";
+  document.body.style.overflow = "auto";
+}
+
+// Sulje modaali (Klikkaus taustalle)
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+  }
+}
+
+// --- FORM LOGIC ---
 const form = document.getElementById("orderForm");
 const genreSelect = document.getElementById("genre");
 const customGenreContainer = document.getElementById("customGenreContainer");
 const customGenreInput = document.getElementById("customGenreInput");
 
-// Kuunnellaan genre-valikon muutoksia
 genreSelect.addEventListener("change", function() {
   if (this.value === "custom") {
     customGenreContainer.style.display = "block";
@@ -527,7 +641,6 @@ form.addEventListener("submit", function(e) {
 
   const data = new FormData(form);
 
-  // LOGIIKKA: Jos "custom" on valittu, korvataan genre-tieto käyttäjän kirjoittamalla tekstillä
   if (data.get("genre") === "custom") {
     data.set("genre", data.get("customGenreInput"));
   }
