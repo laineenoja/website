@@ -597,7 +597,7 @@ const content = {
     <h4>2. Tilaus ja toimitus</h4>
     <p>Tilaus on sitova, kun asiakas on lähettänyt tilauslomakkeen. Valmis kappale toimitetaan asiakkaan ilmoittamaan sähköpostiosoitteeseen. Toimitusaika on tyypillisesti 1-3 arkipäivää, mutta voi vaihdella ruuhkatilanteen mukaan.</p>
     <h4>3. Hinta ja maksuehdot</h4>
-    <p>Palvelun hinta on 20,00 € (sis. alv). Maksu suoritetaan tilauksen yhteydessä tai laskulla/maksulinkillä, joka toimitetaan asiakkaalle.</p>
+    <p>Palvelun hinta on 20,00 € (sis. alv). Maksu suoritetaan tilauksen yhteydessä Stripe-maksupalvelun kautta.</p>
     <h4>4. Palautusoikeus</h4>
     <p>Koska palvelu on kuluttajansuojalain mukainen asiakkaan toiveiden mukaan räätälöity tuote (ns. mittatilaustuote), sillä <strong>ei ole normaalia 14 vuorokauden palautusoikeutta</strong> tilauksen vahvistamisen jälkeen.</p>
     <h4>5. Tekijänoikeudet ja käyttöoikeus</h4>
@@ -679,19 +679,28 @@ form.addEventListener("submit", function(e) {
   data.delete("customGenreInput");
   data.delete("honeypot"); 
 
-  // PÄIVITETTY LINKKI TÄSSÄ!
   fetch("https://script.google.com/macros/s/AKfycbzaA55A5Y7awaIRKhwns21piWw2cuG8IK5b_lEWSonQEBsaHzGrAqFEy_jG25aMXpfOwQ/exec", {
     method: "POST",
     body: data
   })
   .then(response => response.text())
   .then(result => {
-    statusDiv.innerText = "Kiitos! Tilaus vastaanotettu.";
+    
+    // PÄIVITETTY: STRIPE REDIRECT -LOGIIKKA
+    statusDiv.innerText = "Tilaus tallennettu! Siirrytään turvalliseen maksuun...";
     statusDiv.style.color = "#c5a065"; 
+    
+    // Haetaan sähköpostiosoite URL-koodattuna Stripeä varten
+    const userEmail = encodeURIComponent(document.getElementById("email").value);
+
+    // Odotetaan 1.5 sekuntia ja siirrytään Stripeen sähköposti esitäytettynä
+    setTimeout(() => {
+      const stripeUrl = "https://buy.stripe.com/aFacN4fHG4Ua4OF5KQcMM00";
+      window.location.href = stripeUrl + "?prefilled_email=" + userEmail;
+    }, 1500);
+
     form.reset();
     customGenreContainer.style.display = "none";
-    
-    // Nollataan ajastin resetin jälkeen, jotta ihminen voi tehdä uuden tilauksen
     loadTime = new Date().getTime();
   })
   .catch(error => {
