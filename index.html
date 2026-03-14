@@ -415,9 +415,15 @@ form.addEventListener("submit", function(e) {
   submitBtn.innerText = "Käsitellään...";
   statusDiv.innerText = "";
 
-  // LUODAAN UNIIKKI TILAUSNUMERO (Esim: AIV-7382)
-  const randomNum = Math.floor(1000 + Math.random() * 9000);
-  const orderId = "AIV-" + randomNum;
+  // LUODAAN TÄYSIN UNIIKKI TILAUSNUMERO (PÄIVITETTY: VVKK + Aikaleima + Satunnainen)
+  const now = new Date();
+  const yy = String(now.getFullYear()).slice(-2); // Vuoden 2 viimeistä numeroa
+  const mm = String(now.getMonth() + 1).padStart(2, '0'); // Kuukausi (01-12)
+  
+  const timePart = Date.now().toString().slice(-5); // Nykyajan 5 viimeistä numeroa (millisekunteja)
+  const randomPart = Math.floor(100 + Math.random() * 900); // 3 satunnaista numeroa
+  
+  const orderId = "AIV-" + yy + mm + "-" + timePart + "-" + randomPart;
 
   const data = new FormData(form);
 
@@ -431,7 +437,6 @@ form.addEventListener("submit", function(e) {
   // LISÄTÄÄN TILAUSNUMERO DATAAN
   data.append("orderId", orderId);
 
-  // PÄIVITETTY UUTEEN URL-OSOITTEESEESI!
   fetch("https://script.google.com/macros/s/AKfycbwpm_hAQiAu095n3vTmfq94UZEBckM7PDbNF--e9feo-jyyA_sphNUkog86xpYFvPmaIw/exec", {
     method: "POST",
     body: data
@@ -445,7 +450,7 @@ form.addEventListener("submit", function(e) {
     const userEmail = encodeURIComponent(document.getElementById("email").value);
 
     setTimeout(() => {
-      // OHJAUS STRIPEEN: Viedään sähköposti sekä TILAUSNUMERO (client_reference_id)
+      // OHJAUS STRIPEEN
       const stripeUrl = "https://buy.stripe.com/aFacN4fHG4Ua4OF5KQcMM00";
       window.location.href = stripeUrl + "?prefilled_email=" + userEmail + "&client_reference_id=" + orderId;
     }, 1500);
