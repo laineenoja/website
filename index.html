@@ -12,8 +12,55 @@
 <meta property="og:title" content="Aivansound - Kustomoitua musiikkia tekoälyllä">
 <meta property="og:description" content="Tilaa täysin uniikki, omiin sanoituksiisi ja toiveisiisi perustuva musiikkikappale. Loistava lahjaidea!">
 <meta property="og:type" content="website">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "Kustomoitu musiikkikappale tekoälyllä",
+  "description": "Yksilöllinen tekoälymusiikki juuri sinulle tai lahjaksi. Kerro tarinasi, me teemme siitä laulun.",
+  "brand": {
+    "@type": "Brand",
+    "name": "Aivansound"
+  },
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "EUR",
+    "price": "32.90",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Miten oman kappaleen tilaaminen käytännössä toimii?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Kerrot meille tilauslomakkeella kappaleen toivotun tyylilajin ja sen, mistä haluat kappaleen kertovan. Tämän jälkeen me hyödynnämme edistynyttä tekoälymusiikin teknologiaa ja ammattimaista jälkikäsittelyä luodaksemme sinulle täysin uniikin, valmiin musiikkikappaleen."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Täytyyko minun osata kirjoittaa valmiit laulunsanat?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Ei tarvitse! Voit kirjoittaa lomakkeelle vain tarinan, muistoja tai avainsanoja. Tekoäly auttaa meitä muotoilemaan tarinastasi laulun muotoon sopivat, riimittelevät sanat."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Kuinka nopeasti saan valmiin kappaleen ja missä muodossa?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Toimitamme valmiin kappaleen tyypillisesti 1–3 arkipäivän kuluessa (enintään 5 vrk). Saat sähköpostiisi MP3-tiedoston sekä erillisen latauslinkin korkealaatuiseen, masteroituun WAV-tiedostoon."
+    }
+  }]
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
@@ -97,6 +144,74 @@ body {
   margin: 25px 0 25px 70px; width: calc(100% - 70px);
 }
 
+/* --- FAQ SECTION --- */
+.faq-section {
+  margin-bottom: 50px;
+  padding: 30px;
+  background-color: #fdfdfa;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+.faq-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: var(--accent-gold);
+  margin-top: 0;
+  margin-bottom: 25px;
+  text-align: center;
+}
+.faq-item {
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 10px;
+}
+.faq-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+/* Pakotetaan FAQ-napin tyylit poikkeamaan tilausnapista */
+button.faq-question {
+  width: 100%;
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 15px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Lato', sans-serif;
+  text-transform: none;
+  letter-spacing: normal;
+  transition: color 0.3s;
+}
+button.faq-question:hover {
+  background: transparent;
+  color: var(--accent-gold);
+  transform: none;
+}
+.faq-question i {
+  color: var(--accent-gold);
+  transition: transform 0.3s ease;
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+.faq-answer p {
+  padding-bottom: 20px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+.faq-item.active .faq-question i {
+  transform: rotate(180deg);
+}
+
 /* --- FORM WRAPPER --- */
 .form-wrapper {
   background-color: #fdfdfa; border: 1px solid var(--border-color);
@@ -138,14 +253,15 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: var(--a
 .pricing-label { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--text-primary); }
 .pricing-amount { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: var(--accent-gold); }
 
-button {
+/* TILAUSNAPPI (Submit) */
+button[type="submit"] {
   width: 100%; padding: 16px; background: var(--accent-gold); color: white; border: none;
   border-radius: 4px; font-size: 16px; font-weight: 600; text-transform: uppercase;
   letter-spacing: 1px; cursor: pointer; transition: background 0.3s, transform 0.1s;
 }
-button:hover { background: #b08d55; }
-button:active { transform: scale(0.99); }
-button:disabled { background: #dcdcdc; cursor: not-allowed; }
+button[type="submit"]:hover { background: #b08d55; }
+button[type="submit"]:active { transform: scale(0.99); }
+button[type="submit"]:disabled { background: #dcdcdc; cursor: not-allowed; }
 
 #status { margin-top: 20px; text-align: center; font-weight: 600; font-size: 14px; }
 
@@ -179,6 +295,7 @@ button:disabled { background: #dcdcdc; cursor: not-allowed; }
 @media (max-width: 600px) {
   .container { padding: 25px 20px; }
   .form-wrapper { padding: 20px; }
+  .faq-section { padding: 20px; }
   .header h1 { font-size: 26px; }
   .image-grid { flex-direction: column; gap: 35px; }
   .image-card img { height: auto; max-height: 300px; }
@@ -244,6 +361,52 @@ button:disabled { background: #dcdcdc; cursor: not-allowed; }
         Tilauksen yhteydessä kerrot meille, millaista musiikkia haluat, millainen tunnelma kappaleessa on ja kenelle se on tarkoitettu. Voit myös kertoa tarinan tai viestin, jonka haluat välittää laulun kautta.<br><br>
         Näiden tietojen pohjalta luomme kappaleen tekoälyn avulla ja viimeistelemme sen huolellisesti. Varmistamme, että lopputulos on ainutlaatuinen ja sinua varten tehty.<br>
         Valmis kappale toimitetaan sinulle sähköpostitse sovitussa ajassa, valmiina kuunneltavaksi tai lahjaksi.
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-section">
+    <h2>Usein kysytyt kysymykset</h2>
+    
+    <div class="faq-item">
+      <button class="faq-question">Miten oman kappaleen tilaaminen käytännössä toimii? <i class="fas fa-chevron-down"></i></button>
+      <div class="faq-answer">
+        <p>Tilaaminen on tehty sinulle mahdollisimman helpoksi! Kerrot meille tilauslomakkeella kappaleen toivotun tyylilajin (esim. pop, iskelmä, rock tai rap) ja sen, mistä haluat kappaleen kertovan. Tämän jälkeen me hyödynnämme edistynyttä tekoälymusiikin teknologiaa ja ammattimaista jälkikäsittelyä luodaksemme sinulle täysin uniikin, valmiin musiikkikappaleen.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Millaisiin tilanteisiin kustomoitu laulu sopii lahjaksi? <i class="fas fa-chevron-down"></i></button>
+      <div class="faq-answer">
+        <p>Oma laulu on unohtumaton lahjaidea, joka nostaa tunteet pintaan ja sopii lähes mihin tahansa elämäntilanteeseen. Asiakkaamme tilaavat musiikkia usein syntymäpäivälahjaksi (esim. pyöreät vuodet), häihin (häävalssi tai huomenlahja), ristiäisiin, polttareihin tai vaikkapa eläkkeelle jäävälle työkaverille. Se on myös ihana tapa kertoa puolisolle tai vanhemmalle, kuinka tärkeitä he ovat.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Täytyyko minun osata kirjoittaa valmiit laulunsanat? <i class="fas fa-chevron-down"></i></button>
+      <div class="faq-answer">
+        <p>Ei tarvitse! Voit toki lähettää meille täysin valmiin runon tai itse kirjoittamasi lyriikat, mutta yhtä hyvin voit kirjoittaa lomakkeelle vain tarinan, muistoja tai avainsanoja (esim. "Kertoo Matista, joka rakastaa kalastusta ja ajaa vanhalla Volvolla"). Tekoäly auttaa meitä muotoilemaan tarinastasi laulun muotoon sopivat, riimittelevät sanat. Huomioithan kuitenkin, että et voi pyytää meitä käyttämään muiden tekemiä, tekijänoikeudella suojattuja tekstejä.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Kuinka nopeasti saan valmiin kappaleen ja missä muodossa? <i class="fas fa-chevron-down"></i></button>
+      <div class="faq-answer">
+        <p>Toimitamme valmiin kappaleen tyypillisesti 1–3 arkipäivän kuluessa (enintään 5 vrk). Saat sähköpostiisi helposti jaettavan MP3-tiedoston, joka on helppo lähettää eteenpäin WhatsAppissa tai kuunnella puhelimella. Lisäksi saat erillisen latauslinkin korkealaatuiseen, masteroituun WAV-tiedostoon, joka sopii täydellisesti isommista kaiuttimista soitettavaksi esimerkiksi juhlissa.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Voinko julkaista kappaleen Spotifyssa, somessa tai YouTubessa? <i class="fas fa-chevron-down"></i></button>
+      <div class="faq-answer">
+        <p>Kyllä! Saat kappaleeseen vapaat käyttöoikeudet henkilökohtaiseen ja epäkaupalliseen käyttöön. Voit vapaasti jakaa kappaleen omissa sosiaalisen median kanavissasi (Instagram, TikTok, YouTube) tai julkaista sen omakustanteisesti suoratoistopalveluissa (kuten Spotify tai Apple Music). Huomioithan kuitenkin, että kappaletta ei voi eikä saa rekisteröidä tekijänoikeusjärjestöihin (esim. Teosto tai Gramex).</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Mitä jos kappale ei vastaakaan odotuksiani? <i class="fas fa-chevron-down"></i></button>
+      <div class="faq-answer">
+        <p>Tekoälyn luomaan musiikkiin liittyy aina taiteellista yllätyksellisyyttä, ja toisinaan esimerkiksi laulajan ääntämyksessä voi olla pieniä, persoonallisia nyansseja, jotka tekevät teoksesta ainutlaatuisen. Haluamme kuitenkin, että olet lahjaasi tyytyväinen. Siksi tarjoamme tarvittaessa mahdollisuuden luoda kappaleesta kokonaan uuden version yhden (1) kerran, mikäli ensimmäinen vedos ei tunnu oikealta.</p>
       </div>
     </div>
   </div>
@@ -334,7 +497,26 @@ button:disabled { background: #dcdcdc; cursor: not-allowed; }
 <script>
 let loadTime = new Date().getTime();
 
-// --- MODAL LOGIC (PÄIVITETYT EHDOT) ---
+// --- FAQ HAITARI-LOGIIKKA ---
+const faqQuestions = document.querySelectorAll('.faq-question');
+faqQuestions.forEach(btn => {
+  btn.addEventListener('click', function() {
+    const faqItem = this.parentElement;
+    const answer = this.nextElementSibling;
+    
+    // Toggle aktiivisuus
+    faqItem.classList.toggle('active');
+    
+    // Animaatio: Asetetaan max-height sisällön korkeuden mukaan
+    if (faqItem.classList.contains('active')) {
+      answer.style.maxHeight = answer.scrollHeight + "px";
+    } else {
+      answer.style.maxHeight = 0;
+    }
+  });
+});
+
+// --- MODAL LOGIC (EHDOT) ---
 const modal = document.getElementById("infoModal");
 const modalBody = document.getElementById("modalBody");
 const closeBtn = document.getElementsByClassName("close-modal")[0];
