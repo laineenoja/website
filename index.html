@@ -334,30 +334,43 @@ const closeBtn = document.getElementsByClassName("close-modal")[0];
 
 const content = {
   privacy: `
-    <h2>Tietosuojaseloste</h2>
-    <p><strong>Rekisterinpitäjä:</strong> AIVAN Sound (jäljempänä "Palveluntarjoaja").</p>
-    <h4>1. Henkilötietojen käsittelyn tarkoitus</h4>
-    <p>Keräämme henkilötietoja (nimi, sähköpostiosoite, tilaustiedot) asiakassuhteen hoitamista, palvelun tuottamista ja tilauksen toimittamista varten.</p>
-    <h4>2. Tietojen tallennus ja suojaus</h4>
-    <p>Asiakkaan antamat tiedot käsitellään luottamuksellisesti. Tiedot tallennetaan suojattuihin, kolmannen osapuolen ylläpitämiin pilvipalveluihin (esim. Google Cloud -infrastruktuuri), jotka noudattavat alan tietoturvastandardeja.</p>
-    <h4>3. Tietojen luovutus</h4>
-    <p>Emme myy tai luovuta henkilötietoja ulkopuolisille tahoille markkinointitarkoituksiin.</p>
-    <h4>4. Omat oikeudet</h4>
-    <p>Sinulla on oikeus tarkastaa sinusta tallennetut tiedot ja pyytää niiden poistamista rekisteristä ottamalla yhteyttä asiakaspalveluumme.</p>
+    <h2>Tietosuojaseloste ja evästekäytäntö</h2>
+    <p><strong>Rekisterinpitäjä:</strong> AIVAN Sound (jäljempänä "Yritys").<br>
+    <strong>Sähköposti:</strong> music.aivan.ai@gmail.com</p>
+    
+    <h4>1. Kerättävät tiedot ja käyttötarkoitus</h4>
+    <p>Keräämme asiakkaalta tilauksen yhteydessä nimen, sähköpostiosoitteen, tilaustiedot (kuten toiveet kappaleesta) sekä mahdolliset viestit. Tietoja käytetään ainoastaan tilauksen käsittelyyn, palvelun tuottamiseen ja asiakaspalveluun.</p>
+    
+    <h4>2. Tietojen säilytys ja luovutus</h4>
+    <p>Asiakkaan tiedot käsitellään luottamuksellisesti. Maksutapahtumat käsitellään turvallisesti kolmannen osapuolen (Stripe) kautta, jolloin maksukorttitietosi eivät tallennu meidän järjestelmiimme. Emme koskaan myy tai luovuta tietojasi ulkopuolisille tahoille markkinointitarkoituksiin.</p>
+    
+    <h4>3. Evästeet (Cookies) ja analytiikka</h4>
+    <p>Sivustomme käyttää välttämättömiä evästeitä sivuston toiminnan varmistamiseksi. Lisäksi saatamme käyttää analytiikkatyökaluja (kuten Google Analytics) kävijätilastojen keräämiseen ja palvelun kehittämiseen. Voit hallita tai estää evästeiden käytön selaimesi asetuksista.</p>
+    
+    <h4>4. Rekisteröidyn oikeudet</h4>
+    <p>Sinulla on oikeus tarkastaa sinusta tallennetut tiedot, pyytää niiden oikaisua tai poistamista. Ota tällöin yhteyttä asiakaspalveluumme sähköpostitse.</p>
   `,
+  
   terms: `
-    <h2>Toimitusehdot</h2>
-    <p><strong>Voimassaolo:</strong> 1.1.2024 alkaen toistaiseksi.</p>
-    <h4>1. Palvelun kuvaus</h4>
-    <p>AIVAN Sound tuottaa asiakkaalle räätälöidyn musiikkikappaleen. Lopputuote on digitaalinen äänitiedosto.</p>
-    <h4>2. Tilaus ja toimitus</h4>
-    <p>Tilaus on sitova, kun asiakas on lähettänyt tilauslomakkeen. Toimitusaika on tyypillisesti 1-3 arkipäivää.</p>
-    <h4>3. Hinta ja maksuehdot</h4>
-    <p>Palvelun hinta on 32,90 € (sis. alv). Maksu suoritetaan tilauksen yhteydessä Stripe-maksupalvelun kautta.</p>
-    <h4>4. Palautusoikeus</h4>
-    <p>Koska palvelu on räätälöity tuote (ns. mittatilaustuote), sillä <strong>ei ole normaalia 14 vuorokauden palautusoikeutta</strong>.</p>
-    <h4>5. Tekijänoikeudet ja käyttöoikeus</h4>
-    <p>Asiakas saa pysyvän, ei-yksinomaisen käyttöoikeuden valmiiseen kappaleeseen henkilökohtaiseen käyttöön.</p>
+    <h2>Myynti- ja toimitusehdot</h2>
+    
+    <h4>1. Palvelun kuvaus ja tilaaminen</h4>
+    <p>AIVAN Sound tuottaa asiakkaan antamien ohjeiden perusteella räätälöityjä digitaalisia musiikkikappaleita hyödyntäen edistyneitä tekoälymenetelmiä. Tilaus on sitova, kun asiakas on lähettänyt tilauslomakkeen ja suorittanut maksun.</p>
+    
+    <h4>2. Hinnat ja maksaminen</h4>
+    <p>Palvelun hinta on 32,90 € (sis. alv). Maksunvälittäjänä toimii Stripe, joka tarjoaa turvalliset ja yleisimmät maksutavat. Maksu suoritetaan tilauksen teon yhteydessä.</p>
+    
+    <h4>3. Toimitus</h4>
+    <p>Valmis kappale toimitetaan digitaalisessa muodossa (esim. MP3 tai latauslinkki) asiakkaan ilmoittamaan sähköpostiosoitteeseen tyypillisesti 1-3 arkipäivän kuluessa. Toimitusaika on kuitenkin enintään 5 vuorokautta maksun vastaanottamisesta.</p>
+    
+    <h4>4. Peruutusoikeus ja uudet versiot</h4>
+    <p>Koska palvelu on asiakkaan toiveiden mukaan yksilöllisesti valmistettava digitaalinen tuote, <strong>normaali etämyynnin 14 vuorokauden peruutusoikeus päättyy</strong> sillä hetkellä, kun tilauksen valmistus on aloitettu (Kuluttajansuojalaki 6 luku 16 §). Koska tekoälymusiikkiin ei voida tehdä pieniä täsmäkorjauksia, tarjoamme tarvittaessa mahdollisuuden luoda kokonaan uuden version kappaleesta, mikäli ensimmäinen ei vastaa toiveitasi. Asiakas saa lopulta käyttöoikeuden vain yhteen valitsemaansa kappaleversioon.</p>
+    
+    <h4>5. Käyttöoikeudet ja rajoitukset</h4>
+    <p>Asiakas saa valitsemaansa kappaleeseen pysyvän, vapaan käyttöoikeuden <strong>henkilökohtaiseen käyttöön</strong>. Tämä sisältää kappaleen jakamisen omissa sosiaalisen median kanavissa, juhlissa tai tapahtumissa. Ilman erillistä kirjallista sopimusta asiakas ei kuitenkaan saa myydä kappaletta edelleen, rekisteröidä sitä omiin nimiinsä tekijänoikeusjärjestöihin tai käyttää sitä laajoissa kaupallisissa mainoskampanjoissa. Yritys pidättää oikeuden käyttää luotuja teoksia anonyymisti referensseinä omassa markkinoinnissaan.</p>
+    
+    <h4>6. Vastuunrajoitus ja riitatilanteet</h4>
+    <p>Tekoälyn luomaan musiikkiin liittyy aina yllätyksellisyyttä. Takaamme kuitenkin ammattimaisen laadun ja annettujen toiveiden noudattamisen. Mahdolliset erimielisyydet pyritään ratkaisemaan aina ensisijaisesti neuvottelemalla. Riitatilanteisiin sovelletaan Suomen lakia.</p>
   `
 };
 
@@ -415,7 +428,7 @@ form.addEventListener("submit", function(e) {
   submitBtn.innerText = "Käsitellään...";
   statusDiv.innerText = "";
 
-  // LUODAAN TÄYSIN UNIIKKI TILAUSNUMERO (PÄIVITETTY: VVKK + Aikaleima + Satunnainen)
+  // LUODAAN TÄYSIN UNIIKKI TILAUSNUMERO (Esim: AIV-2603-48291-738)
   const now = new Date();
   const yy = String(now.getFullYear()).slice(-2); // Vuoden 2 viimeistä numeroa
   const mm = String(now.getMonth() + 1).padStart(2, '0'); // Kuukausi (01-12)
@@ -450,7 +463,7 @@ form.addEventListener("submit", function(e) {
     const userEmail = encodeURIComponent(document.getElementById("email").value);
 
     setTimeout(() => {
-      // OHJAUS STRIPEEN
+      // OHJAUS STRIPEEN: Viedään sähköposti sekä TILAUSNUMERO (client_reference_id)
       const stripeUrl = "https://buy.stripe.com/aFacN4fHG4Ua4OF5KQcMM00";
       window.location.href = stripeUrl + "?prefilled_email=" + userEmail + "&client_reference_id=" + orderId;
     }, 1500);
